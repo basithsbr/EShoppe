@@ -38,7 +38,7 @@ export default function ShopPage() {
   const [search, setSearch] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("All");
   const [priceRange, setPriceRange] = React.useState<[number, number]>([0, 350]);
-  const [sortBy, setSortBy] = React.useState("featured");
+  const [sortBy, setSortBy] = React.useState<string | null>("featured");
 
   // Filtering Logic
   const filteredProducts = PRODUCTS.filter((product) => {
