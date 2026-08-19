@@ -39,7 +39,7 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = React.useState("All");
   const [priceRange, setPriceRange] = React.useState<[number, number]>([0, 350]);
   const [sortBy, setSortBy] = React.useState<string | null>("featured");
-
+  const [open, setOpen] = React.useState(false);
   // Filtering Logic
   const filteredProducts = PRODUCTS.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
@@ -53,44 +53,58 @@ export default function ShopPage() {
     return 0;
   });
 
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>)  => { 
+    e.preventDefault();
+    console.log("Submitting:", { selectedCategory, priceRange });
+    setOpen(false); 
+  };
+
   // Reusable Filter Sidebar
   const FilterControls = () => (
-    <div className="w-full flex flex-col gap-4">
-      <div>
-        <h3 className="text-sm tracking-tight text-[#e91e63] font-[Arial,sans-serif] mb-3 ml-2">Categories</h3>
-        <div className="space-y-2 space-x-2 flex flex-col">
-          {CATEGORIES.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`text-left text-[12px] px-2 py-1.5 rounded-md transition-colors ml-2 ${selectedCategory === category
-                ? "bg-[#e91e63] text-[#071b4b] font-family-def font-bold"
-                : "text-muted-foreground hover:bg-muted font-family-def"
-                }`}
-            >
-              {category}
-            </button>
-          ))}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="w-full flex flex-col gap-5">
+        <div>
+          <h3 className="text-sm tracking-tight text-[#e91e63] font-[Arial,sans-serif] mb-3 ml-2">Categories</h3>
+          <div className="space-y-2 space-x-2 flex flex-col">
+            {CATEGORIES.map((category) => (
+              <button
+                key={category}
+                onClick={(e) => {                  
+                  setSelectedCategory(category)
+                }
+                }
+                className={`text-left text-[12px] px-2 py-1.5 rounded-md transition-colors ml-2 ${selectedCategory === category
+                  ? "bg-[#e91e63] text-[#071b4b] font-family-def font-bold"
+                  : "text-muted-foreground hover:bg-muted font-family-def"
+                  }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="p-2.5">
+          <div className="flex justify-between items-center ">
+            <h3 className="text-sm font-semibold font-bluefamily-def text-[12px]">Price Range</h3>
+            <span className="text-xs text-muted-foreground mt-7">${priceRange[0]} - ${priceRange[1]}</span>
+          </div>
+          <Slider
+            min={0}
+            max={350}
+            step={10}
+            value={priceRange}
+            onValueChange={(val) => setPriceRange(val as [number, number])}
+            className="py-2"
+          />
+        </div>
+
+        <div className="text-right p-3 ">
+          <Button type="submit" className="w-[150px] font-redfamily-def blue-def">
+            Apply Filters
+          </Button>
         </div>
       </div>
-
-      <Separator />
-
-      <div>
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="text-sm font-semibold font-bluefamily-def text-[12px]">Price Range</h3>
-          <span className="text-xs text-muted-foreground">${priceRange[0]} - ${priceRange[1]}</span>
-        </div>
-        <Slider
-          min={0}
-          max={350}
-          step={10}
-          value={priceRange}
-          onValueChange={(val) => setPriceRange(val as [number, number])}
-          className="py-2"
-        />
-      </div>
-    </div>
+    </form>
   );
 
   return (
@@ -130,7 +144,7 @@ export default function ShopPage() {
             </Select>
 
             {/* Base UI Sheet for Mobile viewports */}
-            <Sheet >
+            <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger render={<Button variant="outline" size="icon" className="md:hidden" />}>
                 <SlidersHorizontal className="h-4 w-4" />
               </SheetTrigger>
@@ -139,6 +153,7 @@ export default function ShopPage() {
                   <SheetTitle>Filter Products</SheetTitle>
                 </SheetHeader>
                 <FilterControls />
+
               </SheetContent>
             </Sheet>
           </div>
