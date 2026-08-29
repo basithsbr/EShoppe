@@ -11,10 +11,10 @@ interface Props {
 export function ProductDetails({ product }: Props) {
   return (
     <>
-      <div className=" overflow-auto  h-screen ">
-        <div className="p-4  ">
+      <div className=" overflow-auto h-screen flex flex-col py-3 snap-50">
+        <div className="px-4">
           {/* h-2/3 */}
-          <div className="font-bluefamily-def text-[18px] font-extrabold  border-b py-2">
+          <div className="font-bluefamily-def text-[18px] font-extrabold border-b py-2 ">
             {product.model}
           </div>
           {/* h-8/9 */}
@@ -29,8 +29,8 @@ export function ProductDetails({ product }: Props) {
 
         </div>
 
-        <div className="flex flex-col  gap-8 h-1/2 px-5">
-          <div className="h-1/4 flex flex-row gap-10 mt-2 py-5">
+        <div className="flex flex-col  gap-4 px-5">
+          <div className="flex flex-row gap-10 mt-2 py-5">
             <div className="font-redfamily-def text-[15px] flex">
               size
             </div>
@@ -44,13 +44,13 @@ export function ProductDetails({ product }: Props) {
               <button className="prod-size">XXXL</button>
             </div>
           </div>
-          <div className="h-2/3 flex flex-col gap-10 ">
-            <div className="flex flex-row gap-10 flex-wrap leading-none justify-between">
+          <div className=" flex flex-col gap-10 ">
+            <div className="flex flex-row gap-5 flex-wrap leading-none justify-between space-y-1">
               <div className="flex flex-row gap-10 flex-wrap leading-none items-center">
                 <h4 className=" font-bold uppercase tracking-wider text-muted-foreground text-[14px]">Price</h4>
                 <div className="flex flex-row leading-none">
-                  <div className="text-3xl  flex  leading-none">
-                    <IndianRupee className="w-[0.5em] h-[0.5em] -mr-0.5" />
+                  <div className="text-3xl  flex leading-none">
+                    <IndianRupee className="w-[0.5em] h-[0.5em] -mr-0.5 mt-0.5" />
                     <span className="font-bluefamily-def text-[20px]">
                     {product.price}
                     </span>
@@ -71,15 +71,11 @@ export function ProductDetails({ product }: Props) {
               </div>
             </div>
 
-            <div className="flex flex-col w-full text-slate-900 border-none pb-10
-             bg-white shadow-md hover:shadow-lg transition-shadow gap-5 snap-start shrink-0">
-              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> */}
-
-                {/* Left Block Column */}
-                
+            <div className="flex flex-col w-full gap-2 ">              
                   <h4 className=" font-bold uppercase tracking-wider text-muted-foreground text-[14px]">Product Info</h4>
-                  <div className="rounded-xl bg-slate-50 gap-4 grid md:grid-cols-4 lg:grid-cols-4 w-full">
-                    <div className="flex flex-col justify-between text-sm ">
+                  <div className="rounded-xl gap-4 grid md:grid-cols-4 lg:grid-cols-6 w-full
+                   text-slate-900 shadow-md hover:shadow-lg transition-shadow py-5 px-2">
+                    <div className="flex flex-col justify-between text-sm">
                       <span className="text-muted-foreground font-bluefamily-def">Item Name</span>
                       <span className="font-semibold ml-4">{product.model}</span>
                     </div>
