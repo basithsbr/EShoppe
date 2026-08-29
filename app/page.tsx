@@ -1,6 +1,4 @@
-"use client";
-
-import { useRef } from "react";
+// import { useRef } from "react";
 import {
     Heart,
     Layers,
@@ -20,19 +18,22 @@ import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { GenericChild } from "@/components/ui/genericChild";
+import { Suspense } from "react";
+import Link from 'next/link';
+import { ShowCardsScrollH } from "@/components/ui/server/cardsscrollH";
+import ServerCard from "@/components/ui/server/productscards";
 
-export default function homePage() {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-    const scroll = (direction: 'left' | 'right') => {
-        if (scrollContainerRef.current) {
-            const scrollAmount = 300;
-            scrollContainerRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth',
-            });
-        }
-    };
+interface PageProps {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function homePage({ searchParams }: PageProps) {
+    const categories = ['Gadgets', 'Clothing', 'Accessories', 'Cosmetics', 'Jerseys', 'Abaya & Hijab', 'Household', 'Toys', 'Games', 'Women\'s Wear', 'Footwear', 'Hampers', 'Magazines', 'Frames']
+    const selectCategory = (category: any) => {
+
+    }
     return (
         <>
 
@@ -48,12 +49,14 @@ export default function homePage() {
 
                     <p className=" text-lg   mr-5 mb-8 font-[Arial,sans-serif] text-[#667085] line-height-[1.7]" >
                         Gadgets, clothing, jerseys, accessories, footwear, home essentials and more.</p>
-                    <button
-                        className=" text-sm text-[12px] bg-[#071b4b] font-[sans-serif] h-10 w-32 font-black rounded-[10px] text-white hover:bg-[#d81b60] transition-colors"
-                        onClick={() => window.location.href = '/shoppe'}
+
+                    <Link
+                        href="/shoppe"
+                        className="flex items-center justify-center  text-[12px] blue-def font-family-def h-10 w-32 font-black rounded-[10px] text-white hover:bg-[#d81b60] transition-colors"
                     >
                         Shop Now
-                    </button>
+                    </Link>
+
 
                 </div>
 
@@ -72,19 +75,18 @@ export default function homePage() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5" id="cats">
                     {/* onClick={() => choose('Gadgets')} */}
-                    <button className="btn-category">Gadgets</button>
-                    <button className="btn-category" >Clothing</button>
-                    <button className="btn-category" >Accessories</button>
-                    <button className="btn-category" >Jerseys</button>
-                    <button className="btn-category" >Abaya & Hijab</button>
-                    <button className="btn-category" >Household</button>
-                    <button className="btn-category" >Toys</button>
-                    <button className="btn-category" >Games</button>
-                    <button className="btn-category" >Women's Wear</button>
-                    <button className="btn-category" >Footwear</button>
-                    <button className="btn-category" >Hampers</button>
-                    <button className="btn-category" >Magazines</button>
-                    <button className="btn-category">Frames</button>
+                    {categories.map((category, i) =>
+                    (
+                        <Link
+                            key={category}
+                            href={`/shoppe?category=${category}`}
+                            className="btn-category inline-block text-center"
+                        >
+                            {category}
+                        </Link>
+                    ))
+                    }
+
                 </div>
             </div>
 
@@ -95,92 +97,13 @@ export default function homePage() {
                     <h1 className="text-[#071b4b] font-bold lg:text-[30px] text-[30px] md:text-[5vw] leading-[1.1]">Products</h1>
                 </div>
 
+                <Suspense>
+                    <ShowCardsScrollH searchParams={searchParams} type="new">
+                        <ServerCard searchParams={searchParams} />
+                    </ShowCardsScrollH>
+                </Suspense>
                 {/* Parent wrapper with px-6 to offset absolute buttons */}
-                <div className="relative w-full px-2 py-10">
-                    {/* Left Arrow Button (Outside flex) */}
-                    <button
-                        onClick={() => scroll('left')}
-                        className="absolute md:hidden hidden lg:block left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
-                        aria-label="Scroll left"
-                    >
-                        <span className="text-xl font-bold font-mono">‹</span>
-                    </button>
 
-                    {/* Scrollable Container (Only contains cards now) */}
-                    <div
-                        ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-3 pb-4 scrollbar-none snap-x snap-mandatory scroll-smooth"
-                    >
-                        {/* Card 1 */}
-                        <Card className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0">
-                            <CardContent className="relative grid aspect-[5/4] bg-[#eef1f6] py-[5px]">
-                                <Badge variant="secondary" className="absolute top-3 right-3 ">New</Badge>
-                            </CardContent>
-                            <CardFooter className="flex flex-col gap-2 bg-white items-start">
-                                <Badge variant="secondary" className="p-0 text-[10px] uppercase font-semibold">
-                                    Accessories
-                                </Badge>
-                                <h3 className="text-sm font-medium ">Product Name</h3>
-                                <span className="text-sm font-medium text-foreground">$99.99</span>
-                                <Button size="sm" className="w-full py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">Add to Cart</Button>
-                            </CardFooter>
-                        </Card>
-
-                        {/* Card 2 */}
-                        <Card className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0">
-                            <CardContent className="relative grid aspect-[5/4] bg-[#eef1f6] py-[5px]">
-                                <Badge variant="secondary" className="absolute top-3 right-3 ">New</Badge>
-                            </CardContent>
-                            <CardFooter className="flex flex-col gap-2 bg-white items-start">
-                                <Badge variant="secondary" className="p-0 text-[10px] uppercase font-semibold">
-                                    Accessories
-                                </Badge>
-                                <h3 className="text-sm font-medium ">Product Name</h3>
-                                <span className="text-sm font-medium text-foreground">$99.99</span>
-                                <Button size="sm" className="w-full py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">Add to Cart</Button>
-                            </CardFooter>
-                        </Card>
-
-                        {/* Card 3 */}
-                        <Card className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0">
-                            <CardContent className="relative grid aspect-[5/4] bg-[#eef1f6] py-[5px]">
-                                <Badge variant="secondary" className="absolute top-3 right-3 ">New</Badge>
-                            </CardContent>
-                            <CardFooter className="flex flex-col gap-2 bg-white items-start">
-                                <Badge variant="secondary" className="p-0 text-[10px] uppercase font-semibold">
-                                    Accessories
-                                </Badge>
-                                <h3 className="text-sm font-medium ">Product Name</h3>
-                                <span className="text-sm font-medium text-foreground">$99.99</span>
-                                <Button size="sm" className="w-full py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">Add to Cart</Button>
-                            </CardFooter>
-                        </Card>
-
-                        {/* Card 4 */}
-                        <Card className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0">
-                            <CardContent className="relative grid aspect-[5/4] bg-[#eef1f6] py-[5px]">
-                                <Badge variant="secondary" className="absolute top-3 right-3 ">New</Badge>
-                            </CardContent>
-                            <CardFooter className="flex flex-col gap-2 bg-white items-start">
-                                <Badge variant="secondary" className="p-0 text-[10px] uppercase font-semibold">
-                                    Accessories
-                                </Badge>
-                                <h3 className="text-sm font-medium ">Product Name</h3>
-                                <span className="text-sm font-medium text-foreground">$99.99</span>
-                                <Button size="sm" className="w-full py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">Add to Cart</Button>
-                            </CardFooter>
-                        </Card>
-                    </div>
-
-                    {/* Right Arrow Button (Moved safely outside flex) */}
-                    <button
-                        onClick={() => scroll('right')}
-                        className="absolute md:hidden hidden lg:block right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
-                        aria-label="Scroll right"
-                    >
-                        <span className="text-xl font-bold font-mono">›</span>
-                    </button>
-                </div>
                 <div className="w-full px-2 py-1">
                     <Card className="blue-def">
                         <CardContent >
@@ -199,14 +122,15 @@ export default function homePage() {
                                         Online payment only • COD not available</p>
                                 </div>
                                 <div className="content-end">
-                                    <button
+                                    {/* <button
                                         className="
                                         text-sm text-[12px] red-def font-[sans-serif] h-10 
                                         w-32 font-black rounded-[10px] text-white hover:bg-[#d81b60] transition-colors"
                                         onClick={() => window.location.href = '/shoppe'}
                                     >
+                                        
                                         Explore
-                                    </button>
+                                    </button> */}
 
                                 </div>
                             </div>

@@ -5,20 +5,27 @@ import Link from "next/link";
 import { ShoppingBag, Search, Menu, User, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { usePathname } from "next/navigation"
+import { usePathname,useRouter  } from "next/navigation"
 import { cn } from "@/lib/utils"
 
 export function Header() {
   const pathname = usePathname()
+  const router = useRouter();
+
 
   // Helper function to check if the route matches
   const getLinkClass = (path: string) => {
+    
     return cn(
       "text-sm font-medium transition-colors font-bluefamily-def hover:font-redfamily-def",
-      // If current path matches, apply the active text color
+      // If current path matches, apply the active text color      
       pathname === path ? "font-redfamily-def" : "text-muted-foreground"
     )
   }
+  const handleNavigateHome = () => {
+    // Navigates back to the clean root path and updates server state
+    router.push('/', { scroll: false });
+  };
   return (
     <>
     <div className="text-center p-1 h-7 text-[12px] bg-[#071b4b] text-white">
@@ -55,8 +62,9 @@ export function Header() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6">
+          {/* <Link href="/" className={getLinkClass("/")} onClick={handleNavigateHome}>Home</Link> */}
           <Link href="/" className={getLinkClass("/")}>Home</Link>
-          <Link href="/shoppe" className={getLinkClass("/shoppe")}>Shop</Link>
+          <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Shop</Link>
           <Link href="/about" className="text-sm font-medium font-bluefamily-def active:font-redfamily-def hover:text-foreground transition-colors">About</Link>
         </nav>
 

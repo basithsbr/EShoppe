@@ -1,0 +1,30 @@
+// src/app/page.tsx
+import { Suspense } from 'react';
+import Link from 'next/link';
+import RightSheetController from '@/components/ui/RightSheetController';
+import ClientDrawerShell from '@/components/ui/RightSheetController';
+
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default function HomePage({ searchParams }: PageProps) {
+  return (
+    <main className="p-8 max-w-xl">
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">Server Infrastructure</h1>
+
+      <Link
+        href="?serverId=srv_abc123"
+        scroll={false}
+        className="inline-block px-5 py-2.5 bg-indigo-600 text-white font-medium text-sm rounded-lg hover:bg-indigo-700 transition"
+      >
+        Inspect Server Node
+      </Link>
+
+      {/* Pure static shell with zero props passing dependencies */}
+      <Suspense fallback={<p className="text-sm text-gray-500">Streaming from server...</p>}>
+        {/* <RightSheetController searchParams={searchParams} /> */}
+      </Suspense>
+    </main>
+  );
+}
