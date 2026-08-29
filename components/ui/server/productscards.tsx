@@ -61,8 +61,7 @@ export default async function ServerCard({ searchParams }: PageProps) {
                       alt={product.name}
                       className="object-contain border-0 transform group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Button 
-                      size="icon"
+                    <Button                       
                       className="absolute top-3 right-3 rounded-full opacity-90 hover:opacity-100 shadow-sm"
                     >
                       <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />
@@ -80,7 +79,7 @@ export default async function ServerCard({ searchParams }: PageProps) {
                     </div>
 
                     <span className="flex flex-row text-sm font-medium font-bluefamily-def"><IndianRupee className="mt-1 h-3 w-3" />{product.price}</span>
-                    <Button size="sm" className="w-full cursor-pointer text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">
+                    <Button className="w-full cursor-pointer text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">
                       View</Button>
                   </CardFooter>
                 </Card>
