@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/page.tsx_1", "app/page.tsx", "app/shoppe/page.tsx_1", "app/page.tsx_3", "app/page copy.tsx_work"  ],
+, "app/page.tsx_1", "app/page.tsx", "app/shoppe/page.tsx_1", "app/page.tsx_3", "app/page copy.tsx_work", "app/shoppe/page copy.tsx_2"  ],
   "exclude": ["node_modules"]
 }
