@@ -88,11 +88,11 @@ export default async function ShoppePage({ searchParams }: PageProps) {
             </SelectContent>
           </Select>
           {/* Base UI Sheet for Mobile viewports */}          
-            <div className="md:hidden lg:hidden " >
+            {/* <div className="md:hidden lg:hidden " >
               <Suspense fallback={null}>
                 <FilterController searchParams={searchParams} />                                                    
               </Suspense>
-              </div>
+              </div> */}
         </div>
       </div>
 

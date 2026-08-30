@@ -9,7 +9,11 @@ import {
     Search,
     ShoppingBag,
     Star,
-    IndianRupee
+    IndianRupee,
+    Icon,
+    AdIcon,
+    ListIcon,
+    Menu
 } from "lucide-react";
 
 // Shadcn UI + Base UI Component Imports
@@ -27,7 +31,7 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 
 interface FilterControllerProps {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
     child?: React.ReactNode;
     // CloseWrapper: React.ComponentType<{ asChild?: boolean; children: React.ReactNode }>;
     // CloseWrapper: React.ComponentType<any>; 
@@ -65,11 +69,14 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
 
         <>
             <Sheet>
-                <SheetTrigger render={<Button variant="outline" size="icon" className="md:hidden lg:hidden" />}>
-                    <SlidersHorizontal className="h-4 w-4" />
+                <SheetTrigger>
+                    {/* <Menu className="w-18 h-8" /> */}
+                    <SlidersHorizontal className="p-0! h-4 w-4 bg-white border-0" />
+                    <span className="text-[10px] absolute right-3">Filter</span>
+                    {/* <Bars3Icon className="w-8 h-8" /> */}
                 </SheetTrigger>
 
-                <SheetContent side="left" className="!w-screen !max-w-none sm:!max-w-sm h-full overflow-y-auto">
+                <SheetContent side="right" className="w-2/3! !max-w-none sm:!max-w-sm h-full overflow-y-auto">
                     <SheetHeader className="px-2 font-bluefamily-def">
                         <SheetTitle className="flex flex-row gap-2">
                             {/* <Layers className="h-4 w-5" />                        */}
@@ -88,7 +95,7 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                         />
 
                         <div className="text-right p-3 ">
-                            <SheetClose onClick={handleSubmit} className="w-[150px] font-redfamily-def blue-def rounded-[5px] p-3 text-white">
+                            <SheetClose onClick={handleSubmit} className="font-redfamily-def blue-def rounded-[5px] p-3 text-white">
                                 Apply Filters
                             </SheetClose>
                         </div>
