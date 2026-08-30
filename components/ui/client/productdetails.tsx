@@ -96,9 +96,6 @@ export function ProductDetails({ product }: Props) {
               </div>
             </div>
           </div>
-
-      {/* </div> */}
-
     </>
   );
 }
