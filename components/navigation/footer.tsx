@@ -112,10 +112,10 @@ export function Footer() {
         ${helpPage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
           <Link href="/" className="text-sm font-medium hover:text-primary">Help</Link>
         </button>        
-        <div className="flex items-center px-4">
+        {/* <div className="flex items-center px-4">
         <FilterController>
         </FilterController>
-      </div>
+      </div> */}
       </div>
       
     </>
