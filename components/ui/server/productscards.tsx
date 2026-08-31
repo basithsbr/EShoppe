@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardFooter } from '../card';
 import { Button } from '@base-ui/react';
-import { Badge, Heart, IndianRupee, Layers } from 'lucide-react';
+import { Badge, Heart, IndianRupee, Layers, LayoutGrid } from 'lucide-react';
 import { ModalWrapper } from '../client/modal';
 
 async function fetchLiveData(category: string) {
@@ -48,14 +48,27 @@ export default async function ServerCard({ searchParams }: PageProps) {
     <>
 
       <React.Suspense>
-        {productsArray.length === 0 ? productsArray.length :
+        {productsArray.length === 0 ? <>
+        <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-16 text-center">
+                <LayoutGrid className="h-10 w-10 text-muted-foreground mb-4" />
+                <h3 className="font-semibold text-lg">No products found</h3>
+                <p className="text-muted-foreground text-sm mt-1 max-w-xs">
+                  Try loosening your filters, adjusting your price range, or searching for something else.
+                </p>
+                <Button                  
+                  className="mt-4"                  
+                >
+                  Retry with some other category
+                </Button>
+              </div>
+        </> :
           productsArray.map((product: any) => {
             return (
 
               <ModalWrapper key={product._id} product={product}>
-                <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0">
-
-                  <CardContent className="relative grid aspect3/4  py-[5px]">
+                {/* <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0"> */}
+                  <Card key={product._id} className=" bg-white shadow-md hover:shadow-lg transition-shadow gap-0 snap-start shrink-0">
+                  <CardContent className="relative grid aspect3/4 ">
                     <img
                       src={product.image_url}
                       alt={product.name}

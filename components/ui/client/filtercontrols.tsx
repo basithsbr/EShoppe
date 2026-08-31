@@ -13,14 +13,14 @@ import {
     Icon,
     AdIcon,
     ListIcon,
-    Menu
+    Menu,
+    
 } from "lucide-react";
 
 // Shadcn UI + Base UI Component Imports
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -28,6 +28,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { PriceFilter } from "@/components/pricefilter";
 import FilterWrapper from "../../filterWrapper";
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import Link from "next/link";
 
 
 interface FilterControllerProps {
@@ -59,20 +60,25 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
     const handleSubmit = () => {
         console.log("handle Submit...");
         const params = new URLSearchParams(currentParams.toString());
+        
         params.set('category', localCategory);
         params.set('showFilter', 'false');
-        router.push(`${pathname}?${params.toString()}`);
-
+        // router.push(`${pathname}?${params.toString()}`);
+        router.push(`/shoppe/?${params.toString()}`);
     }
 
     return (
 
         <>
             <Sheet>
-                <SheetTrigger>
+                {/* <SheetTrigger render={<Link href="/shoppe">Products</Link>}> */}
+                <SheetTrigger >
+                {/* <SheetTrigger render={<Button variant="secondary" size="icon-lg" className="p-0! md:hidden lg:hidden text-[#071b4b]">
+            </Button>}></SheetTrigger> */}
                     {/* <Menu className="w-18 h-8" /> */}
                     <SlidersHorizontal className="p-0! h-4 w-4 font-bluefamily-def border-0" />
-                    <span className="text-[10px] absolute right-6.5 font-bluefamily-def">Filter</span>
+                    <span className="text-[10px] absolute right-6.5 font-bluefamily-def">
+                        Filter</span>
                     {/* <Bars3Icon className="w-8 h-8" /> */}
                 </SheetTrigger>
 
@@ -96,7 +102,8 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
 
                         <div className="text-right p-3 ">
                             <SheetClose onClick={handleSubmit} className="font-redfamily-def blue-def rounded-[5px] p-3 text-white">
-                                Apply Filters
+                                <Link href="/shoppe">Apply Filters</Link>
+                                
                             </SheetClose>
                         </div>
                     </div>
@@ -120,6 +127,7 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                         <div className="text-right p-3 ">
                             <Button onClick={handleSubmit} className=" font-redfamily-def blue-def">
                                 Apply Filters
+                                
                             </Button>
                         </div>
                     </div>
