@@ -110,16 +110,13 @@ export function Footer() {
 
         <button className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${helpPage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
-          <Link href="/help" className="text-sm font-medium hover:text-primary">Help</Link>
+          <Link href="/" className="text-sm font-medium hover:text-primary">Help</Link>
         </button>        
         <div className="flex items-center px-4">
         <FilterController>
         </FilterController>
       </div>
       </div>
-      
-      
-
       
     </>
   );
