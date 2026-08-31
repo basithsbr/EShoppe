@@ -72,7 +72,7 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                 <SheetTrigger>
                     {/* <Menu className="w-18 h-8" /> */}
                     <SlidersHorizontal className="p-0! h-4 w-4 font-bluefamily-def border-0" />
-                    <span className="text-[10px] absolute right-7 font-bluefamily-def">Filter</span>
+                    <span className="text-[10px] absolute right-6.5 font-bluefamily-def">Filter</span>
                     {/* <Bars3Icon className="w-8 h-8" /> */}
                 </SheetTrigger>
 
