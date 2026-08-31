@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { Suspense } from "react";
 import { FilterController } from "../ui/client/filtercontrols";
 
 export function Footer() {
@@ -112,10 +112,13 @@ export function Footer() {
         ${helpPage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
           <Link href="/" className="text-sm font-medium hover:text-primary">Help</Link>
         </button>        
+        <Suspense fallback={<div className="h-10 w-full animate-pulse bg-gray-100" />}>
         <div className="flex items-center px-4">
         <FilterController>
+          
         </FilterController>
       </div>
+      </Suspense>
       </div>
       
     </>
