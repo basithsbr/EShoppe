@@ -86,7 +86,7 @@ export function Footer() {
         </div>
       </footer>
 
-      <div className="flex flex-row w-full  sticky bottom-0 left-0 right-0 md:hidden bg-white shadow-lg border-t border-gray-200 z-50">
+      <div className="flex flex-row w-full  sticky bottom-0 left-0 right-0 md:hidden bg-white shadow-lg border-gray-200 z-50">
         {/* <button 
         className="w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all"> */}
         {/* // className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all */}
@@ -110,17 +110,20 @@ export function Footer() {
 
         <button className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${helpPage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
-          <Link href="/" className="text-sm font-medium hover:text-primary">Help</Link>
-        </button>        
-        <Suspense fallback={<div className="h-10 w-full animate-pulse bg-gray-100" />}>
-        <div className="flex items-center px-4">
-        <FilterController>
-          
-        </FilterController>
+          <Link href="/help" className="text-sm font-medium hover:text-primary">Help</Link>
+        </button>
+        <Suspense fallback={<div className="h-10 w-full animate-pulse" />}>
+          <div className="max-w-sm rounded-1xl bg-white px-7 border-6 border-gray-100 flex items-center
+            shadow-[0_4px_12px_rgba(0,0,0,0.05)] 
+            transition-all duration-300 ease-out 
+            hover:-translate-y-2 hover:scale-[1.02] 
+            hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)]">
+            <FilterController>
+            </FilterController>
+          </div>
+        </Suspense>
       </div>
-      </Suspense>
-      </div>
-      
+
     </>
   );
 }
