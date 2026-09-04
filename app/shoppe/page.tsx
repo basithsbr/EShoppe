@@ -25,7 +25,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { PriceFilter } from "@/components/pricefilter";
 import { FilterController } from "@/components/ui/client/filtercontrols";
-import { getProducst } from "@/app/api/producs/clientservice";
+import { getProducst } from "@/app/product/[id]/page";
 import EliteCards from "@/components/ui/elitecards";
 import ServerCard from '@/components/ui/server/productscards';
 
@@ -99,7 +99,7 @@ export default async function ShoppePage({ searchParams }: PageProps) {
       {/* Main Grid Section */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-8 tems-start ">
         {/* Desktop Sidebar Layout */}
-          <div className="hidden md:block sticky top-16 lg:block items-start " >
+          <div className="hidden md:block sticky lg:block items-start" >
             <Suspense fallback={null}>
               <FilterController searchParams={searchParams} />
             </Suspense>

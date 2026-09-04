@@ -2,31 +2,9 @@ import React from 'react';
 import { Card, CardContent, CardFooter } from '../card';
 import { Button } from '@base-ui/react';
 import { Badge, Heart, IndianRupee, Layers, LayoutGrid } from 'lucide-react';
-import { ModalWrapper } from '../client/modal';
+import { ProductWrapper } from '../client/productwrapper';
+import {fetchLiveData} from '@/app/services/clientservices';
 
-async function fetchLiveData(category: string) {
-  // Executed securely on your backend platform layer
-
-  const res = await fetch(`https://eliteshoppe-py.onrender.com/products`, {
-  // const res = await fetch(`http://127.0.0.1:8000/products`, {
-    cache: 'no-store' // Forces Next.js to skip caching and perform true SSR on every request
-  });
-
-  if (!res.ok) throw new Error('Failed to fetch local database data');
-
-  const data = await res.json();
-  if (category == undefined || category == '')
-    return JSON.parse(JSON.stringify(data));
-
-  const productsArr = JSON.parse(JSON.stringify(data))
-  const filteredProducts = productsArr.filter((product: any) => {
-
-    return product.category === category;
-  });
-  console.log("filteredProducts : ", filteredProducts);
-  return filteredProducts;
-
-}
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -65,7 +43,7 @@ export default async function ServerCard({ searchParams }: PageProps) {
           productsArray.map((product: any) => {
             return (
 
-              <ModalWrapper key={product._id} product={product}>
+              <ProductWrapper key={product._id} product={product}>
                 {/* <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0"> */}
                   <Card key={product._id} className=" bg-white shadow-md hover:shadow-lg transition-shadow gap-0 snap-start shrink-0">
                   <CardContent className="relative grid aspect3/4 ">
@@ -96,7 +74,7 @@ export default async function ServerCard({ searchParams }: PageProps) {
                       View</Button>
                   </CardFooter>
                 </Card>
-              </ModalWrapper>
+              </ProductWrapper>
 
             )
           })

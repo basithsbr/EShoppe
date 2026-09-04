@@ -70,15 +70,15 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
     return (
 
         <>
+        <div className="md:hidden lg:hidden " >
             <Sheet>
                 {/* <SheetTrigger render={<Link href="/shoppe">Products</Link>}> */}
                 <SheetTrigger >
                 {/* <SheetTrigger render={<Button variant="secondary" size="icon-lg" className="p-0! md:hidden lg:hidden text-[#071b4b]">
             </Button>}></SheetTrigger> */}
                     {/* <Menu className="w-18 h-8" /> */}
-                    <SlidersHorizontal className="p-0! h-4 w-4 font-bluefamily-def border-0" />
-                    <span className="text-[10px] absolute right-6.5 font-bluefamily-def">
-                        Filter</span>
+                    <SlidersHorizontal className="p-0! h-4 w-4 lg:hidden md:hidden font-bluefamily-def border-0" />
+                    <span className="text-[10px] absolute right-6.5 font-bluefamily-def"></span>
                     {/* <Bars3Icon className="w-8 h-8" /> */}
                 </SheetTrigger>
 
@@ -109,10 +109,10 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                     </div>
                 </SheetContent>
             </Sheet>
-
-            <aside className="w-full hidden md:block md:col-span-1 sticky">
-                <div className="sticky top-6 border p-5 rounded-lg bg-card text-card-foreground shadow-sm">
-                    <div className="flex items-center gap-2 mb-4 font-semibold text-sm uppercase tracking-wider tracking-tight text-[#071b4b] font-[Arial,sans-serif]">
+            </div>
+            <aside className="w-full hidden md:block md:col-span-1 ">
+                <div className="sticky top-0 border p-5 rounded-lg bg-card text-card-foreground shadow-sm">
+                    <div className="flex items-center gap-2 mb-4 font-semibold text-sm uppercase font-bluefamily-def tracking-[1px]">
                         <Layers className="h-4 w-4" />
                         Filters
                     </div>

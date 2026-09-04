@@ -13,12 +13,13 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer" 
 import { ProductDetails } from "./productdetails"
+import Link from "next/link"
 
 interface Props {
     children: React.ReactNode,
     product: any
 }
-export function ModalWrapper({ product, children }: Props) {
+export function ProductWrapper({ product, children }: Props) {
     const [sheetOpen, setSheetOpen] = React.useState<boolean>(false);
     const handleSheetOpen = (sheetOpen: boolean) => {
         setSheetOpen(true);
@@ -26,9 +27,13 @@ export function ModalWrapper({ product, children }: Props) {
 
     return (
         <>
-            <div>
-                <div onClick={() => handleSheetOpen(true)} className="cursor-pointer">
-                    {/* // <div onClick={() => setSheetOpen(true)}> */}
+            
+                <div className="cursor-pointer">                    
+                    <Link href={`/product/${product._id}`} className="cursor-pointer">
+                        {children}
+                    </Link>
+                </div>
+                <div onClick={() => handleSheetOpen(true)} className="cursor-pointer md:hidden lg:hidden">                    
                     {children}
                 </div>
                 <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>                    
@@ -36,7 +41,7 @@ export function ModalWrapper({ product, children }: Props) {
                         <ProductDetails product={product}></ProductDetails>
                     </SheetContent>                
                 </Sheet>
-            </div>
+            
         </>
     )
 }
