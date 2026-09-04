@@ -40,16 +40,7 @@ export default async function ShoppePage({ searchParams }: PageProps) {
   
   // const isOpen = typeof resolvedParams.showFilters === 'boolean' 
   //   ? false : 'true';
-    async function handleFilterSubmit(formData: FormData) {
-        'use server';
-        console.log("handle Submit...");
-        const params = new URLSearchParams(searchParams.toString());
-        const selectedCategory = formData.get('category');
-        console.log("selectedCategory :: "+selectedCategory)
-        // params.set('category', localCategory);
-        // router.push(`${pathname}?${params.toString()}`);
-        // router.push(`${pathname}?showFilters=false`);
-    }
+    
   return (
 
     <><div className="px-4 md:px-6 lg:px-8 py-8">
