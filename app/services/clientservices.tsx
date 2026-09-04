@@ -20,8 +20,8 @@ export async function fetchLiveData(category: string) {
 
 async function fetchAll() {
 
-    // return await fetch(`https://eliteshoppe-py.onrender.com/products`, {
-    return await fetch(`http://127.0.0.1:8000/products`, {
+    return await fetch(`https://eliteshoppe-py.onrender.com/products`, {
+    // return await fetch(`http://127.0.0.1:8000/products`, {
         // cache: 'no-store' // Forces Next.js to skip caching and perform true SSR on every request
         next: { revalidate: 60 },
     });
