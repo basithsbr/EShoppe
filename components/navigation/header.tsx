@@ -7,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { usePathname,useRouter  } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useCartStore } from "../store/cartStore";
 
 export function Header() {
   const pathname = usePathname()
   const router = useRouter();
-
+const count = useCartStore((state) => state.getCartCount());
 
   // Helper function to check if the route matches
   const getLinkClass = (path: string) => {
@@ -86,7 +87,7 @@ export function Header() {
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden sm:inline">Cart</span>
               <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                0
+                {count}
               </span>
             </Button>
           </div>

@@ -3,12 +3,25 @@
 import { DivideSquare, IndianRupee } from "lucide-react";
 import { Card } from "../card";
 import { Button } from "@base-ui/react";
+import React from  "react";
+import { useCartStore } from "@/components/store/cartStore";
+
 
 interface Props {
   product: any,
 }
 
 export function ProductDetails({ product }: Props) {
+  const[sizeButton, setSizeButton] = React.useState<string | null>(null);
+  const addToCart = useCartStore((state) => state.addToCart);
+  const sizeButtons = [
+    { id: 'S', label: 'S' },
+    { id: 'M', label: 'M' },
+    { id: 'L', label: 'L' },
+    { id: 'XL', label: 'XL' },
+    { id: 'XXL', label: 'XXL' },
+    { id: 'XXXL', label: 'XXXL' },
+  ];
   return (
     <>
       <div className="flex items-center justify-center">
@@ -33,13 +46,16 @@ export function ProductDetails({ product }: Props) {
               {/* <div className="flex flex-row items-center gap-2 w-full flex-wrap "> */}
               {/* <div className="prod-size-wrapper-sm md:prod-size-wrapper-md lg:prod-size-wrapper-lg"> */}
               <div className="flex flex-row gap-3 items-center justify-start w-full flex-wrap ">
-                <button className="prod-size ">S</button>
-                <button className="prod-size">M</button>
-                <button className="prod-size">L</button>
-                <button className="prod-size">XL</button>
-                <button className="prod-size">XXL</button>
-                <button className="prod-size">XXXL</button>
-                <button className="prod-size">XXXL</button>
+                {sizeButtons.map((button) => (
+                  <button
+                    key={button.id}
+                    className={`prod-size ${sizeButton === button.id ? 'red-def' : ''}`}
+                    onClick={() => setSizeButton(button.id)}
+                  >
+                    {button.label}
+                  </button>
+                ))
+              }               
               </div>
             </div>
           </div>
@@ -49,11 +65,13 @@ export function ProductDetails({ product }: Props) {
             <div className="flex flex-col  gap-4 md:gap-8 lg:gap-8">
               <div className="">
                 <h4 className="font-subtitle-def">Price</h4>
-                <div className="shadow-border-def ">
+                <div className="shadow-border-def flex flex-row justify-between items-center font-bluefamily-def">
                   <div className="flex flex-row items-baseline leading-none">
-                    <div className="text-3xl flex items-baseline">
-                      <IndianRupee className="w-[0.5em] h-[0.5em] -mr-0.5" />
+                    <div className="text-xl flex items-baseline">
+                      {/* <IndianRupee className="w-[0.5em] h-[0.5em] -mr-0.5" /> */}
+                      ₹
                     </div>
+                    
                     <div className="font-bluefamily-def text-[20px] font-semibold">
                       {product.price}
                     </div>
@@ -61,11 +79,27 @@ export function ProductDetails({ product }: Props) {
                       MRP<span className="font-bluefamily-def px-1">(Inclusive of all taxes)</span>
                     </div>
                   </div>
+                  <div className="text-[10px] font-bluefamily-def flex flex-col items-end justify-end gap-1 px-2">
+                    <div className="flex flex-row gap-1 items-center">                    
+                      <span className="text-[14px] font-bluefamily-def font-semibold relative">
+                      ₹
+                      </span>                      
+                    <span className="text-[14px] font-bluefamily-def font-semibold relative
+                      px-1 before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-full before:h-[2px] before:bg-red-500 before:rotate-12 before:-translate-y-1/2">
+                      200
+                    </span>                    
+                    </div>                    
+                    <span className="font-semibold font-redfamily-def">10% Discount</span>
+                  </div>
                 </div>
+              
+                
               </div>
               <div className="flex flex-row gap-4 justify-end py-3 w-full">
                 <div>
-                  <Button className="cursor-pointer p-10 text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[11px] font-semi font-[family:Arial,sans-serif]">
+                  <Button 
+                  onClick={() => addToCart(product)} 
+                  className="cursor-pointer p-10 text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[11px] font-semi font-[family:Arial,sans-serif]">
                     Add To Cart</Button>
                 </div>
                 <div>

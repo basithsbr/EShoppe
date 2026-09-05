@@ -166,7 +166,8 @@
 }
 
 @utility prod-size {
-  @apply rounded-[5px] font-bluefamily-def border flex-1 hover:red-def min-w-15 p-1 text-[12px]
+  @apply rounded-[5px] font-bluefamily-def border flex-1  min-w-15 p-1 text-[12px]
+  active:red-def 
 }
 @utility prod-size-wrapper-sm
 {
