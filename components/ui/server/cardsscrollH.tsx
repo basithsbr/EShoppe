@@ -41,7 +41,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
     return (
         <>
             {/* Parent wrapper with px-6 to offset absolute buttons */}
-            <div className="relative w-full px-2 py-10">
+            <div className="relative w-full px-2 py-5">
                 {/* Left Arrow Button (Outside flex) */}
                 <button
                     onClick={() => scroll('left')}

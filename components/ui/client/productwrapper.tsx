@@ -33,14 +33,14 @@ export function ProductWrapper({ product, children }: Props) {
                         {children}
                     </Link>
                 </div>
-                <div onClick={() => handleSheetOpen(true)} className="cursor-pointer md:hidden lg:hidden">                    
+                {/* <div onClick={() => handleSheetOpen(true)} className="cursor-pointer md:hidden lg:hidden">                    
                     {children}
                 </div>
                 <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>                    
                     <SheetContent className="w-full md:w-3/3 lg:w-3/4 h-7/8! lg:h-7/8! md:h-7/8! max-h-none! left-1/2! -translate-x-1/2 rounded-t-2xl" side="bottom">
                         <ProductDetails product={product}></ProductDetails>
                     </SheetContent>                
-                </Sheet>
+                </Sheet> */}
             
         </>
     )

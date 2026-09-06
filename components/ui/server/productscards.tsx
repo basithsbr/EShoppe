@@ -8,20 +8,22 @@ import {fetchLiveData} from '@/app/services/clientservices';
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
-export default async function ServerCard({ searchParams }: PageProps) {
+export default async function ServerCard({ searchParams,style,className }: PageProps) {
 
-  // export default async function ServerCard() {
-  // const resolvedParams = React.use(searchParams);
+  
   const resolvedParams = await searchParams;
-  // 2. Extract and format your values safely
+  
   const category = typeof resolvedParams.category === 'string'
     ? resolvedParams.category
     : '';
-  // const category = '';
-  const productsArray = await fetchLiveData(category);
-
+  let productsArray = Array.isArray(resolvedParams.related)
+  ? resolvedParams.related
+  : await fetchLiveData(category);
+  console.log("productsArray - ", productsArray[0]._id);
   return (
     <>
 
@@ -45,7 +47,7 @@ export default async function ServerCard({ searchParams }: PageProps) {
 
               <ProductWrapper key={product._id} product={product}>
                 {/* <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0"> */}
-                  <Card key={product._id} className=" bg-white shadow-md hover:shadow-lg transition-shadow gap-0 snap-start shrink-0">
+                  <Card key={product._id} className={` bg-white shadow-md hover:shadow-lg transition-shadow gap-0 snap-start shrink-0 ${className}`} >
                   <CardContent className="relative grid aspect3/4 ">
                     <img
                       src={product.image_url}

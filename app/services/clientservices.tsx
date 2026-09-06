@@ -40,5 +40,15 @@ export async function getProductById(id: string) {
     });
     console.log("filteredProducts : ", filteredProducts);
     return filteredProducts;
+}
 
+export async function getRelatedProductBy(id: string) {
+    console.log("getProductById id : ", id);
+    const res = await fetchAll();
+    if (!res.ok) throw new Error('Failed to fetch local database data');
+
+    const data = await res.json();
+    // console.log("date : ", data);
+    return JSON.parse(JSON.stringify(data));
+    
 }

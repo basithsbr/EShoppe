@@ -91,16 +91,18 @@ export default async function homePage({ searchParams }: PageProps) {
             </div>
 
             {/* </div> */}
-            <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[40px] md:px-[20px] md:py-[50px] lg:px-[70px] lg:py-[50px] ">
-                <div id="head" className="grid flex-col gap-5">
-                    <div className="text-[#e91e63] font-black text-[12px] font-[Arial,sans-serif] tracking-[2px] ">CURATED FOR YOU</div>
+            <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[30px] md:px-[20px] md:py-[30px] lg:px-[70px] lg:py-[30px] ">
+                <div id="head" className="flex flex-col gap-5">
+                    <div className="text-[#e91e63] font-black text-[12px] font-bluefamily-def tracking-[2px] ">CURATED FOR YOU</div>
                     <h1 className="text-[#071b4b] font-bold lg:text-[30px] text-[30px] md:text-[5vw] leading-[1.1]">Products</h1>
                 </div>
 
                 <Suspense>
+                    <div className=""> 
                     <ShowCardsScrollH searchParams={searchParams} type="new">
-                        <ServerCard searchParams={searchParams} />
+                        <ServerCard searchParams={searchParams} className="w-[300px]" />
                     </ShowCardsScrollH>
+                    </div>
                 </Suspense>
                 {/* Parent wrapper with px-6 to offset absolute buttons */}
 
