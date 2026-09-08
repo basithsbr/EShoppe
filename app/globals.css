@@ -200,3 +200,7 @@
 @utility prod-info-row {
   @apply flex flex-row justify-between text-sm w-[250px] border-b border-slate-200/60 p-2 text-[12px] tracking-[1px]
 }
+
+@utility button-def {
+  @apply cursor-pointer p-10 text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[11px] font-[family:Arial,sans-serif]
+}

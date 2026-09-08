@@ -101,11 +101,11 @@ export function ProductDetails({ product, children }: Props) {
                   <div>
                     <Button
                       onClick={() => addToCart(product)}
-                      className="cursor-pointer p-10 text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[11px] font-semi font-[family:Arial,sans-serif]">
+                      className="button-def">
                       Add To Cart</Button>
                   </div>
                   <div>
-                    <Button className="cursor-pointer p-10 text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[11px] font-semi font-[family:Arial,sans-serif]">
+                    <Button className="button-def">
                       Enquiry Whatsapp</Button>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export function ProductDetails({ product, children }: Props) {
       <div className="flex flex-col gap-2"  > 
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[30px] text-[30px] md:text-[5vw] leading-[1.1]">Related Products</h1>
+                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">Related Products</h1>
                 </div>
         <div>
           {children}
@@ -173,7 +173,7 @@ export function ProductDetails({ product, children }: Props) {
       </div>
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[30px] text-[30px] md:text-[5vw] leading-[1.1]">You May Also Like</h1>
+                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">You May Also Like</h1>
                 </div>
         <div>
           {children}
