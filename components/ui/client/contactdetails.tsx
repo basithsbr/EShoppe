@@ -10,36 +10,43 @@ export default function ContactDetails() {
             <div className="flex flex-col lg:flex-row  gap-5 w-full">
                 <div className="flex flex-col gap-5 shadow-border-def flex-1">
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             Address1
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             Address2
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             District
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             City
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             State
+                        </span>
+                        <Input type="text" 
+                            className="border-b input-focus-border-h-def" />
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <span className="font-bluefamily-def-H3">
+                            Zip Code
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
@@ -48,28 +55,28 @@ export default function ContactDetails() {
 
                 <div className="flex flex-col gap-5 shadow-border-def flex-1">
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             Mobile1
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             Mobile2
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             LandLine
                         </span>
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
                     <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H2">
+                        <span className="font-bluefamily-def-H3">
                             Email
                         </span>
                         <Input type="text" 

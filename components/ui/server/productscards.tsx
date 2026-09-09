@@ -60,7 +60,7 @@ export default async function ServerCard({ searchParams,style,className }: PageP
                       <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />
                     </Button>
                   </CardContent>
-                  <CardFooter className="flex flex-col py-2 gap-2 bg-white items-start">
+                  <CardFooter className="flex flex-col py-2 px-2 gap-2 bg-white items-start">
                     <div className='w-full flex flex-row justify-between'>
                       <div>
                         <h3 className="font-bluefamily-def ">{product.item}</h3>

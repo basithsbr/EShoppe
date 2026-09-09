@@ -7,31 +7,31 @@ export default function CartAmount({amount}:{amount: number}) {
     
     
     return (
-        <div className="shadow-border-def flex-1 p-10 h-fit">
+        <div className="shadow-border-def flex-1 p-5 h-fit">
             <div className="flex flex-col gap-5 ">
                 <h1 className="font-bluefamily-def-H2 font-semibold ">
-                    Amount Payable
+                    Order Summary
                 </h1>
 
                 <div>
                     <div className="flex flex-row justify-between">
-                        <span>Cart Items Price</span>
+                        <span className="font-bluefamily-def-H3">Cart Items Price</span>
                         <span>{amount}</span>
                     </div>
                     <div className="flex flex-row justify-between">
-                        <span>Discount %</span>
+                        <span className="font-bluefamily-def-H3">Discount %</span>
                         <span>0</span>
                     </div>
                     <div className="flex flex-row justify-between">
-                        <span>Delivery fee</span>
+                        <span className="font-bluefamily-def-H3">Delivery fee</span>
                         <span>0</span>
                     </div>
                     <div className="flex flex-row justify-between">
-                        <span>Other charges</span>
+                        <span className="font-bluefamily-def-H3">Other charges</span>
                         <span>0</span>
                     </div>
                     <div className="flex flex-row justify-between">
-                        <span>Tax</span>
+                        <span className="font-bluefamily-def-H3">Tax</span>
                         <span>0</span>
                     </div>
                 </div>
