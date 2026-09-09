@@ -4,7 +4,7 @@ import { DivideSquare, IndianRupee } from "lucide-react";
 import { Card } from "../card";
 import { Button } from "@base-ui/react";
 import React from "react";
-import { useCartStore } from "@/components/store/cartStore";
+import { useCartStore } from "@/app/store/cartStore";
 import { ReadStream } from "fs";
 import { ShowCardsScrollH } from "../server/cardsscrollH";
 
@@ -16,7 +16,13 @@ interface Props {
 
 export function ProductDetails({ product, children }: Props) {
   const [sizeButton, setSizeButton] = React.useState<string | null>(null);
-  const addToCart = useCartStore((state) => state.addToCart);
+  const addToCartStore = useCartStore((state) => state.addToCart);
+  const addToCart = (product: any) => {
+    product = {...product, size: sizeButton};
+    console.log("updated product - ",product);
+    addToCartStore({...product, size: sizeButton});
+  }
+
   const sizeButtons = [
     { id: 'S', label: 'S' },
     { id: 'M', label: 'M' },
@@ -25,6 +31,7 @@ export function ProductDetails({ product, children }: Props) {
     { id: 'XXL', label: 'XXL' },
     { id: 'XXXL', label: 'XXXL' },
   ];
+  
   return (
     <>
       <div className="flex items-center justify-center">
@@ -32,7 +39,7 @@ export function ProductDetails({ product, children }: Props) {
           <div className="font-bluefamily-def text-[18px] font-extrabold border-b py-2 px-4">
             {product.model}
           </div>
-          <div className=" flex lg:flex-row md:flex-col flex-col py-3 lg:h-screen">
+          <div className=" flex lg:flex-row md:flex-col flex-col py-3 ">
             <div className="px-4 border-slate-200/60 flex flex-col gap-4 w-full md:w-full lg:w-full">
               <div className=" w-full flex align-center justify-center h-2/4">
                 <img
@@ -63,8 +70,7 @@ export function ProductDetails({ product, children }: Props) {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 p-5
-        rounded-xl w-full text-slate-900 bg-white  shadow-lg border border-slate-200/60 relative -translate-y-0.5">
+            <div className="flex flex-col gap-4 p-5 w-full shadow-border-def">
               <div className="flex flex-col  gap-4 md:gap-8 lg:gap-8">
                 <div className="">
                   <h4 className="font-subtitle-def">Price</h4>
@@ -109,7 +115,7 @@ export function ProductDetails({ product, children }: Props) {
                       Enquiry Whatsapp</Button>
                   </div>
                 </div>
-
+                <div className="horizontal-line-def" aria-hidden="true" />
                 <div className="">
                   <h4 className="font-subtitle-def">
                     Delivery
@@ -120,7 +126,7 @@ export function ProductDetails({ product, children }: Props) {
                     Free Delivery. Will deliver between 3-5 business days. In case of any issues, We will contact you at the right time.
                   </div>
                 </div>
-
+                <div className="horizontal-line-def" aria-hidden="true" />
                 <div className="flex flex-col w-full gap-2 ">
                   <h4 className=" font-subtitle-def">Product Info</h4>
                   <div className="rounded-xl grid md:grid-cols-2 lg:grid-cols-2 gap-4 w-full text-slate-900 bg-white font-bluefamily-def text-[14px] tracking-[1px] max-sm:shadow-border-def">
@@ -142,7 +148,7 @@ export function ProductDetails({ product, children }: Props) {
                     </div>
                   </div>
                 </div>
-
+                <div className="horizontal-line-def" aria-hidden="true" />
                 <div className="">
                   <h4 className="font-subtitle-def">
                     Return Policy
@@ -153,10 +159,7 @@ export function ProductDetails({ product, children }: Props) {
                     Currently  we dont support return policy. In case of any issues, Kindly contact us. We will provide you with the best possible solution. We are always here to help you.
                   </div>
                 </div>
-
-
               </div>
-
             </div>
           </div>
 
@@ -165,7 +168,8 @@ export function ProductDetails({ product, children }: Props) {
       <div className="flex flex-col gap-2"  > 
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">Related Products</h1>
+                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">
+                      Related Products</h1>
                 </div>
         <div>
           {children}
@@ -173,7 +177,8 @@ export function ProductDetails({ product, children }: Props) {
       </div>
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">You May Also Like</h1>
+                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">
+                      You May Also Like</h1>
                 </div>
         <div>
           {children}

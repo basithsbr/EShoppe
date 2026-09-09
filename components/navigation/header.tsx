@@ -7,12 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { useCartStore } from "../store/cartStore";
+import { useCartStore } from "../../app/store/cartStore";
+
+
 
 export function Header() {
   const pathname = usePathname()
   const router = useRouter();
   const count = useCartStore((state) => state.getCartCount());
+
+  const [hasHydrated, setHasHydrated] = React.useState(false);
+
+  // 2. Wait until client-side hydration completes
+  React.useEffect(() => {
+    setHasHydrated(true);
+  }, []);
 
   // Helper function to check if the route matches
   const getLinkClass = (path: string) => {
@@ -87,8 +96,8 @@ export function Header() {
                 <Button variant="outline" size="sm" className="cursor-pointer gap-2 relative ml-1">
                   <ShoppingBag className="h-4 w-4" />
                   <span className="hidden sm:inline">Cart</span>
-                  <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                    {count}
+                  <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">                    
+                    {hasHydrated ? count : 0}
                   </span>
                 </Button>
               </Link>

@@ -47,7 +47,7 @@ export default async function ServerCard({ searchParams,style,className }: PageP
 
               <ProductWrapper key={product._id} product={product}>
                 {/* <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0"> */}
-                  <Card key={product._id} className={` bg-white shadow-md hover:shadow-lg transition-shadow gap-0 snap-start shrink-0 ${className}`} >
+                  <Card key={product._id} className={`bg-transparent shrink-0 ${className}`} >
                   <CardContent className="relative grid aspect3/4 ">
                     <img
                       src={product.image_url}
@@ -60,8 +60,7 @@ export default async function ServerCard({ searchParams,style,className }: PageP
                       <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />
                     </Button>
                   </CardContent>
-                  <CardFooter className="flex flex-col gap-2 bg-white items-start">
-
+                  <CardFooter className="flex flex-col py-2 gap-2 bg-white items-start">
                     <div className='w-full flex flex-row justify-between'>
                       <div>
                         <h3 className="font-bluefamily-def ">{product.item}</h3>
