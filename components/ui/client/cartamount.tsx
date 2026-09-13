@@ -1,4 +1,4 @@
-import { useCartStore } from "@/app/store/cartStore";
+import { useCartStore } from "@/app/store/CommonStore";
 import { totalCartAmount } from "@/app/utils/utils";
 
 
@@ -16,7 +16,7 @@ export default function CartAmount({amount}:{amount: number}) {
                 <div>
                     <div className="flex flex-row justify-between">
                         <span className="font-bluefamily-def-H3">Cart Items Price</span>
-                        <span>{amount}</span>
+                        <span className="font-bluefamily-def-H2 font-semibold">{amount}</span>
                     </div>
                     <div className="flex flex-row justify-between">
                         <span className="font-bluefamily-def-H3">Discount %</span>
@@ -38,7 +38,7 @@ export default function CartAmount({amount}:{amount: number}) {
                 <hr></hr>
                 <div className="flex flex-row justify-between">
                     <span>Total</span>
-                    <span>{totalCartAmount(amount, 0 ,0 ,0)}</span>
+                    <span className="font-bluefamily-def-H2 font-semibold">{totalCartAmount(amount, 0 ,0 ,0)}</span>
                 </div>
             </div>
 

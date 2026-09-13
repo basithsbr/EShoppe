@@ -39,7 +39,7 @@ export function PriceFilter({ priceRange, onPriceChangeCommit }: PriceFilterProp
             <div className="flex gap-3 items-center">
                 {/* Minimum Input Box */}
                 <div className="flex flex-1 items-center border rounded-md px-2 py-1.5 bg-muted/40 focus-within:ring-1 focus-within:ring-ring">
-                    <span className="text-xs text-muted-foreground mr-1 select-none">$</span>
+                    <span className="text-xs text-muted-foreground mr-1 select-none">₹</span>
                     <input
                         type="number"
                         min={0}
@@ -54,7 +54,7 @@ export function PriceFilter({ priceRange, onPriceChangeCommit }: PriceFilterProp
 
                 {/* Maximum Input Box */}
                 <div className="flex flex-1 items-center border rounded-md px-2 py-1.5 bg-muted/40 focus-within:ring-1 focus-within:ring-ring">
-                    <span className="text-xs text-muted-foreground mr-1 select-none">$</span>
+                    <span className="text-xs text-muted-foreground mr-1 select-none">₹</span>
                     <input
                         type="number"
                         min={0}

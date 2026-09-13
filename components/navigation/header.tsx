@@ -2,12 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ShoppingBag, Search, Menu, User, Heart } from "lucide-react";
+import { ShoppingBag, Search, Menu, User, Heart, Icon, SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { useCartStore } from "../../app/store/cartStore";
+import { useCartStore, useProductStore } from "../../app/store/CommonStore";
+import SearchBar from "../ui/client/SearchBar";
+import SearchDrawer from "../ui/client/SearchDrawer";
 
 
 
@@ -15,6 +17,7 @@ export function Header() {
   const pathname = usePathname()
   const router = useRouter();
   const count = useCartStore((state) => state.getCartCount());
+  const [searchOpen, setSearchOpen] = React.useState(false);
 
   const [hasHydrated, setHasHydrated] = React.useState(false);
 
@@ -41,9 +44,13 @@ export function Header() {
       <div className="text-center p-1 h-7 text-[12px] bg-[#071b4b] text-white">
         Premium Quality • Trusted Since 1984 • Shipping Across India
       </div>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-
-        <div className=" px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      {/* <div className=" "> */}
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur 
+              supports-backdrop-filter:bg-background/60 border-b">
+        
+        <div className="relative px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 z-50">
+        {/* <div className="h-16 bg-white/75 backdrop-blur-md px-6 flex items-center justify-between text-black"> */}
+        {/* <div className="relative z-50 px-4 sm:px-6 lg:px-8 h-16  bg-white/70 backdrop-blur-md flex items-center justify-between border-b border-white/20 text-black"> */}
 
           {/* Mobile Navigation Trigger */}
           <div className="flex items-center gap-2 md:hidden">
@@ -80,11 +87,16 @@ export function Header() {
 
           {/* Search Bar & Action Buttons */}
           <div className="flex items-center gap-4 flex-1 md:flex-initial max-w-md w-full justify-end">
-            <div className="relative w-full hidden sm:block max-w-[240px]">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input type="search" placeholder="Search store..." className="pl-8 h-9" />
+            <div className="relative w-full  sm:block max-w-[240px] flex justify-end">
+              {/* <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" /> */}
+              <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
+                <SearchIcon className="h-5 w-5 text-muted-foreground"></SearchIcon>
+              </button>
+              
+              {/* <Input type="search" placeholder="Search store..." className="pl-8 h-9" /> */}
+              {/* <SearchBar></SearchBar> */}
             </div>
-
+              
             <div className="flex items-center gap-1">
               <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
                 <Heart className="h-5 w-5 text-muted-foreground" />
@@ -103,9 +115,16 @@ export function Header() {
               </Link>
             </div>
           </div>
-
+        </div>      
+        {/* <div className="w-full  bg-white/90 z-10"> */}
+         <div className="fixed w-full ">
+          <SearchDrawer open={searchOpen} setSearchOpen={setSearchOpen} ></SearchDrawer>
         </div>
       </header>
+      {/* <div className="w-full "> */}
+      {/* <SearchDrawer open={searchOpen} setSearchOpen={setSearchOpen} ></SearchDrawer> */}
+      {/* </div> */}
+      {/* </div> */}
     </>
   );
 }

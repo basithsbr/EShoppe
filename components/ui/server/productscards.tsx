@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter } from '../card';
 import { Button } from '@base-ui/react';
 import { Badge, Heart, IndianRupee, Layers, LayoutGrid } from 'lucide-react';
 import { ProductWrapper } from '../client/productwrapper';
-import {fetchLiveData} from '@/app/services/clientservices';
+import { fetchLiveData } from '@/app/services/clientservices';
 
 
 interface PageProps {
@@ -12,49 +12,44 @@ interface PageProps {
   className?: string;
 }
 
-export default async function ServerCard({ searchParams,style,className }: PageProps) {
+export default async function ServerCard({ searchParams, style, className }: PageProps) {
 
-  
+
   const resolvedParams = await searchParams;
-  
-  const category = typeof resolvedParams.category === 'string'
-    ? resolvedParams.category
-    : '';
   let productsArray = Array.isArray(resolvedParams.related)
-  ? resolvedParams.related
-  : await fetchLiveData(category);
-  console.log("productsArray - ", productsArray[0]._id);
+    ? resolvedParams.related
+    : await fetchLiveData(searchParams);
   return (
     <>
 
       <React.Suspense>
         {productsArray.length === 0 ? <>
-        <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-16 text-center">
-                <LayoutGrid className="h-10 w-10 text-muted-foreground mb-4" />
-                <h3 className="font-semibold text-lg">No products found</h3>
-                <p className="text-muted-foreground text-sm mt-1 max-w-xs">
-                  Try loosening your filters, adjusting your price range, or searching for something else.
-                </p>
-                <Button                  
-                  className="mt-4"                  
-                >
-                  Retry with some other category
-                </Button>
-              </div>
+          <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-16 text-center">
+            <LayoutGrid className="h-10 w-10 text-muted-foreground mb-4" />
+            <h3 className="font-semibold text-lg">No products found</h3>
+            <p className="text-muted-foreground text-sm mt-1 max-w-xs">
+              Try loosening your filters, adjusting your price range, or searching for something else.
+            </p>
+            <Button
+              className="mt-4"
+            >
+              Retry with some other category
+            </Button>
+          </div>
         </> :
           productsArray.map((product: any) => {
             return (
 
               <ProductWrapper key={product._id} product={product}>
                 {/* <Card key={product._id} className="min-w-[260px] sm:min-w-[280px] bg-white shadow-md hover:shadow-lg transition-shadow gap-0 py-[0px] snap-start shrink-0"> */}
-                  <Card key={product._id} className={`bg-transparent shrink-0 ${className}`} >
+                <Card key={product._id} className={`bg-transparent shrink-0 ${className}`} >
                   <CardContent className="relative grid aspect3/4 ">
                     <img
                       src={product.image_url}
                       alt={product.name}
                       className="object-contain border-0 transform group-hover:scale-105 transition-transform duration-300"
                     />
-                    <Button                       
+                    <Button
                       className="absolute top-3 right-3 rounded-full opacity-90 hover:opacity-100 shadow-sm"
                     >
                       <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />

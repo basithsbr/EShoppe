@@ -4,7 +4,7 @@ import { DivideSquare, IndianRupee } from "lucide-react";
 import { Card } from "../card";
 import { Button } from "@base-ui/react";
 import React from "react";
-import { useCartStore } from "@/app/store/cartStore";
+import { useCartStore } from "@/app/store/CommonStore";
 import { ReadStream } from "fs";
 import { ShowCardsScrollH } from "../server/cardsscrollH";
 

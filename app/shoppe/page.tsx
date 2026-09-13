@@ -26,9 +26,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { PriceFilter } from "@/components/pricefilter";
 import { FilterController } from "@/components/ui/client/filtercontrols";
 import ServerCard from '@/components/ui/server/productscards';
-
-
-
+import SelectControls from '@/components/ui/client/selectcontrol';
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -36,11 +34,6 @@ interface PageProps {
 
 export default async function ShoppePage({ searchParams }: PageProps) {
   
-  // const router = useRouter();
-  
-  // const isOpen = typeof resolvedParams.showFilters === 'boolean' 
-  //   ? false : 'true';
-    
   return (
 
     <><div className="px-4 md:px-6 lg:px-8 py-8">
@@ -64,18 +57,9 @@ export default async function ShoppePage({ searchParams }: PageProps) {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div> */}
-
-          <Select  >
-            <SelectTrigger className="w-[160px] bg-[#071b4b] text-white font-[Arial,sans-serif] text-[13px]">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent >
-              <SelectItem value="featured" className="font-[Arial,sans-serif] text-[11px]">Featured</SelectItem>
-              <SelectItem value="price-low" className="font-[Arial,sans-serif] text-[11px]">Price: Low to High</SelectItem>
-              <SelectItem value="price-high" className="font-[Arial,sans-serif] text-[11px]">Price: High to Low</SelectItem>
-              <SelectItem value="rating" className="font-[Arial,sans-serif] text-[11px]">Highest Rated</SelectItem>
-            </SelectContent>
-          </Select>
+          <React.Suspense>
+            <SelectControls searchParams={searchParams}></SelectControls>
+          </React.Suspense>
           {/* Base UI Sheet for Mobile viewports */}          
             {/* <div className="md:hidden lg:hidden " >
               <Suspense fallback={null}>

@@ -25,6 +25,24 @@ export default function ContactDetails() {
                     </div>
                     <div className="flex flex-col gap-3">
                         <span className="font-bluefamily-def-H3">
+                            LandMark
+                        </span>
+                        <Input type="text" 
+                            className="border-b input-focus-border-h-def" />
+                    </div>
+                    
+                    <div className="flex flex-col gap-3">
+                        <span className="font-bluefamily-def-H3">
+                            Zip Code
+                        </span>
+                        <Input type="text" 
+                            className="border-b input-focus-border-h-def" />
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-5 shadow-border-def flex-1">
+                    <div className="flex flex-col gap-3">
+                        <span className="font-bluefamily-def-H3">
                             District
                         </span>
                         <Input type="text" 
@@ -44,15 +62,7 @@ export default function ContactDetails() {
                         <Input type="text" 
                             className="border-b input-focus-border-h-def" />
                     </div>
-                    <div className="flex flex-col gap-3">
-                        <span className="font-bluefamily-def-H3">
-                            Zip Code
-                        </span>
-                        <Input type="text" 
-                            className="border-b input-focus-border-h-def" />
-                    </div>
                 </div>
-
                 <div className="flex flex-col gap-5 shadow-border-def flex-1">
                     <div className="flex flex-col gap-3">
                         <span className="font-bluefamily-def-H3">

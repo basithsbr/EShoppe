@@ -1,6 +1,6 @@
 'use client'
 
-import { useCartStore } from "@/app/store/cartStore";
+import { useCartStore } from "@/app/store/CommonStore";
 import { Button, Separator, Slider } from "@base-ui/react";
 import { Icon, SeparatorVertical, SlidersHorizontal, X } from "lucide-react";
 import React, { useEffect } from "react";
@@ -65,7 +65,10 @@ export default function CartItems() {
                                                     <h3 className="font-bluefamily-def-H2 font-semibold">{item.category}</h3>
                                                     {/* <h3 className="font-bluefamily-def-H2 font-semibold">{item.name}</h3> */}
                                                     <p className="font-bluefamily-def-H3">Size: {item.size}</p>
-                                                    <p className="font-bluefamily-def-H3">Price: ₹{item.price}</p>
+                                                    <p className="font-bluefamily-def-H3">Price:  
+                                                        <span className="font-bluefamily-def-H2 font-semibold">₹{item.price}
+                                                            </span>
+                                                        </p>
                                                     <p className="font-bluefamily-def-H3">Qty: {item.quantity}</p>
                                                 </div>
                                             </div>

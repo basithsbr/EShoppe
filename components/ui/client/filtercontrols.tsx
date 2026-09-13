@@ -62,6 +62,14 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
         const params = new URLSearchParams(currentParams.toString());
         
         params.set('category', localCategory);
+        if(localPriceFilter[0] != undefined)
+        {
+            params.set('minPrice', localPriceFilter[0]+'');
+        }
+        if(localPriceFilter[1] != undefined)
+        {
+            params.set('maxPrice', localPriceFilter[1]+'');
+        }        
         params.set('showFilter', 'false');
         // router.push(`${pathname}?${params.toString()}`);
         router.push(`/shoppe/?${params.toString()}`);
@@ -101,7 +109,7 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                         />
 
                         <div className="text-right p-3 ">
-                            <SheetClose onClick={handleSubmit} className="font-redfamily-def blue-def rounded-[5px] p-3 text-white">
+                            <SheetClose onClick={handleSubmit} className="cursor-pointer font-redfamily-def blue-def rounded-[5px] p-3 text-white">
                                 <Link href="/shoppe">Apply Filters</Link>
                                 
                             </SheetClose>
@@ -125,7 +133,7 @@ export function FilterController({ searchParams, child }: FilterControllerProps)
                             setPriceRange={setLocalPriceFilter}
                         />
                         <div className="text-right p-3 ">
-                            <Button onClick={handleSubmit} className=" font-redfamily-def blue-def">
+                            <Button onClick={handleSubmit} className="cursor-pointer font-redfamily-def blue-def">
                                 Apply Filters
                                 
                             </Button>
@@ -177,20 +185,20 @@ function ProductFilter({ CATEGORIES,
         </div>
     </div>
 
-        <div className="px-2">
+        <div className="">
             <Separator className="bg-border" />
         </div>
 
-        {/* <div className="px-2.5">
+        { <div className="px-4">
             <div className="flex justify-between items-center ">
                 <h3 className="text-sm font-semibold font-bluefamily-def text-[12px]">Price Range</h3>
-                <span className="text-xs text-muted-foreground mt-7">${priceRange[0]} - ${priceRange[1]}</span>
+                <span className="text-xs text-muted-foreground mt-7">₹{priceRange[0]} - ₹{priceRange[1]}</span>
             </div>
             <PriceFilter
                 priceRange={priceRange}
                 // onPriceChangeCommit={(val) => setPriceRange(val)}
                 onPriceChangeCommit={(val) => setPriceRange(val)}
             />
-        </div> */}
+        </div> }
     </>
 }

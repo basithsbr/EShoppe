@@ -7,6 +7,7 @@ import { Button } from "@base-ui/react";
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface props {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -43,6 +44,8 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
             {/* Parent wrapper with px-6 to offset absolute buttons */}
             <div className="relative w-full px-2 py-5">
                 {/* Left Arrow Button (Outside flex) */}
+                
+                <Link href="/shoppe/?category=new" className="font-bluefamily-def underline flex justify-end">show All</Link>
                 <button
                     onClick={() => scroll('left')}
                     className="absolute md:hidden hidden lg:block left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
@@ -55,7 +58,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
                 <div
                     ref={scrollContainerRef}
                     className="flex overflow-x-auto gap-3 pb-4 scrollbar-none snap-x snap-mandatory scroll-smooth"
-                    >
+                    >                        
                     {children}
                     <button
                         onClick={() => scroll('right')}

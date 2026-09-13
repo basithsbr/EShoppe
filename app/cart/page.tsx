@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from "@/app/store/cartStore";
+import { useCartStore } from "@/app/store/CommonStore";
 import CartItems from "@/components/ui/client/cartitems";
 
 
