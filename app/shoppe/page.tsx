@@ -83,12 +83,12 @@ export default async function ShoppePage({ searchParams }: PageProps) {
           {/* 
             <EliteCards selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} priceRange={priceRange}
               setPriceRange={setPriceRange}></EliteCards> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> 
+        
           <Suspense fallback={<p className="text-sm text-gray-500">Streaming from server...</p>}>
             {/* <RightSheetController searchParams={searchParams} /> */}
-            <ServerCard searchParams={searchParams} />
+            <ServerCard searchParams={searchParams} wrapperDivClass='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3'/>
           </Suspense>
-          </div>
+        
         </main>
       </div>
     </div>

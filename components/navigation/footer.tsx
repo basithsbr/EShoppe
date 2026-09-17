@@ -98,7 +98,7 @@ export function Footer() {
         ${homePage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
           {/* <Link href="/" className="text-sm font-medium hover:text-primary">Home</Link> */}
           {/* <Link href="/" className={getLinkClass("/")}>Home</Link> */}
-          <Link href="/">Home</Link>
+          <Link href="/?filter=new">Home</Link>
         </button>
 
         <button className={`w-full flex items-center hover:opacity-90 justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all

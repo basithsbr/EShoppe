@@ -80,7 +80,7 @@ export function Header() {
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-6">
             {/* <Link href="/" className={getLinkClass("/")} onClick={handleNavigateHome}>Home</Link> */}
-            <Link href="/" className={getLinkClass("/")}>Home</Link>
+            <Link href="/?filter=new" className={getLinkClass("/")}>Home</Link>
             <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Shop</Link>
             <Link href="/about" className="text-sm font-medium font-bluefamily-def active:font-redfamily-def hover:text-foreground transition-colors">About</Link>
           </nav>

@@ -2,11 +2,16 @@
 
 export async function fetchLiveData(searchParams: Promise<{ [key: string]: string | string[] | undefined }>) {
 
-    console.log("fetchLiveData category ");
+    
     const resolvedParams = await searchParams;
     const category = typeof resolvedParams.category === 'string'
         ? resolvedParams.category
         : '';
+    const filteType = typeof resolvedParams.filter === 'string'
+        ? resolvedParams.filter
+        : '';
+
+    console.log("fetchLiveData category ",category);
     const minPrice = typeof resolvedParams.minPrice === 'string'
         ? resolvedParams.minPrice
         : '';
@@ -17,6 +22,7 @@ export async function fetchLiveData(searchParams: Promise<{ [key: string]: strin
     const sortBy = typeof resolvedParams.sortBy === 'string'
         ? resolvedParams.sortBy
         : '';
+    console.log("fetchLiveData category ",category, minPrice, maxPrice);
     const res = await fetchAll();
     if (!res.ok) throw new Error('Failed to fetch local database data');
 
@@ -29,7 +35,7 @@ export async function fetchLiveData(searchParams: Promise<{ [key: string]: strin
 
     const productsArr = JSON.parse(JSON.stringify(data))
     const filteredProducts = productsArr.filter((product: any) => {
-        let filter;
+        let filter = true;
 
         if (category != undefined && category != '') {
             filter = product.category === category
@@ -50,7 +56,10 @@ export async function fetchLiveData(searchParams: Promise<{ [key: string]: strin
         if (sortBy === "Price-low") return a.price - b.price;
         if (sortBy === "Price-high") return b.price - a.price;
         if (sortBy === "High-Rating") return b.rating - a.rating;
+        
         return 0;
+    }).sort((a :any, b:any) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime(); 
     });
     // console.log("filteredProducts : ", filteredProducts);
     return filteredProducts;

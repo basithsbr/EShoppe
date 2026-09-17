@@ -24,6 +24,8 @@ import Link from 'next/link';
 import { ShowCardsScrollH } from "@/components/ui/server/cardsscrollH";
 import ServerCard from "@/components/ui/server/productscards";
 
+import { redirect } from 'next/navigation';
+
 
 interface PageProps {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -31,8 +33,13 @@ interface PageProps {
 
 export default async function homePage({ searchParams }: PageProps) {
     const categories = ['Gadgets', 'Clothing', 'Accessories', 'Cosmetics', 'Jerseys', 'Abaya & Hijab', 'Household', 'Toys', 'Games', 'Women\'s Wear', 'Footwear', 'Hampers', 'Magazines', 'Frames']
-    const selectCategory = (category: any) => {
-
+    const currentParams = await searchParams
+      
+    if (!currentParams.filter) {
+        const params = new URLSearchParams(currentParams as Record<string, string>);
+        params.set("filter", "new");
+            
+        redirect(`/?${params.toString()}`);
     }
     return (
         <>
@@ -100,7 +107,7 @@ export default async function homePage({ searchParams }: PageProps) {
                 <Suspense>
                     <div className=""> 
                     <ShowCardsScrollH searchParams={searchParams} type="new">
-                        <ServerCard searchParams={searchParams} className="w-[300px]" />
+                        <ServerCard searchParams={searchParams} cardClass="w-40 lg:w-60 md:-50" wrapperDivClass="w-full flex gap-3"/>
                     </ShowCardsScrollH>
                     </div>
                 </Suspense>
