@@ -20,7 +20,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
       {product && product.length > 0 ? <ProductDetails product={product[0]}>
         
           <ShowCardsScrollH searchParams={searchParams} type="new">
-            <ServerCard searchParams={searchParams} className="w-[300px]"/>
+            <ServerCard searchParams={searchParams} cardClass="w-40 lg:w-60 md:-50" wrapperDivClass="w-full flex gap-3"/>
           </ShowCardsScrollH>
         
       </ProductDetails> : "Product not found"}
