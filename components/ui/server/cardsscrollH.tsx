@@ -45,7 +45,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
             <div className="relative w-full px-2 py-5">
                 {/* Left Arrow Button (Outside flex) */}
                 
-                <Link href="/shoppe/?category=new" className="font-bluefamily-def underline flex justify-end">show All</Link>
+                <Link href="/shoppe/?category=new" className="font-bluefamily-def-H2 underline flex justify-end">show All</Link>
                 <button
                     onClick={() => scroll('left')}
                     className="absolute md:hidden hidden lg:block left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
