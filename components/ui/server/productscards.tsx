@@ -50,7 +50,7 @@ export default async function ServerCard({ searchParams, style, cardClass,wrappe
                         <img
                           src={product.image_url}
                           alt={product.name}
-                          className="rounded-t-2xl object-center h-full w-full border-0 transform group-hover:scale-105 transition-transform duration-300"
+                          className="rounded-t-[10px] object-center h-full w-full border-0 transform group-hover:scale-105 transition-transform duration-300"
                         />
                         <Button
                           className="absolute top-3 right-3 rounded-full opacity-90 hover:opacity-100 shadow-sm"

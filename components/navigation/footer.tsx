@@ -95,14 +95,14 @@ export function Footer() {
         {/* // ${page === 'home' ? 'border-black' : 'border-transparent'}`} */}
         <button
           className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
-        ${homePage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
+        ${homePage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
           {/* <Link href="/" className="text-sm font-medium hover:text-primary">Home</Link> */}
           {/* <Link href="/" className={getLinkClass("/")}>Home</Link> */}
           <Link href="/?filter=new">Home</Link>
         </button>
 
         <button className={`w-full flex items-center hover:opacity-90 justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
-        ${shopPage ? 'border-t-[#071b4b] border-5 ' : 'border-transparent'}`}>
+        ${shopPage ? 'border-t-[#071b4b] border-4 ' : 'border-transparent'}`}>
           {/* <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Products</Link> */}
           <Link href="/shoppe">Products</Link>
         </button>
@@ -111,7 +111,7 @@ export function Footer() {
         {/* <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Products</Link> */}
 
         <button className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
-        ${helpPage ? 'border-t-[#071b4b] border-5' : 'border-transparent'}`}>
+        ${helpPage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
           <Link href="/help" className="text-sm font-medium hover:text-primary">Help</Link>
         </button>
         <Suspense fallback={<div className="h-10 w-full animate-pulse" />}>
