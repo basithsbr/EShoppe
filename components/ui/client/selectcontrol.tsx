@@ -31,13 +31,13 @@ export default function SelectControls({ searchParams }: Props) {
     <>
       <Select onValueChange={sortBy} >
         <SelectTrigger className="w-[160px] bg-[#071b4b] text-white font-[Arial,sans-serif] text-[13px]">
-          <SelectValue className="font-bluefamily-def-H4 text-white" placeholder="Sort by" />
+          <SelectValue className="font-bluefamily-def-H12 text-white" placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent >
-          <SelectItem value="Featured" className="font-bluefamily-def-H4">Featured</SelectItem>
-          <SelectItem value="Price-low" className="font-bluefamily-def-H4">Price: Low to High</SelectItem>
-          <SelectItem value="Price-high" className="font-bluefamily-def-H4">Price: High to Low</SelectItem>
-          <SelectItem value="High-Rating" className="font-bluefamily-def-H4">Highest Rated</SelectItem>
+          <SelectItem value="Featured" className="font-bluefamily-def-H12">Featured</SelectItem>
+          <SelectItem value="Price-low" className="font-bluefamily-def-H12">Price: Low to High</SelectItem>
+          <SelectItem value="Price-high" className="font-bluefamily-def-H12">Price: High to Low</SelectItem>
+          <SelectItem value="High-Rating" className="font-bluefamily-def-H12">Highest Rated</SelectItem>
         </SelectContent>
       </Select>
     </>

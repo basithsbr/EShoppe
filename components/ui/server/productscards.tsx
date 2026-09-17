@@ -58,12 +58,12 @@ export default async function ServerCard({ searchParams, style, cardClass,wrappe
                           <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />
                         </Button>
                       </CardContent>
-                      <CardFooter className="flex flex-col py-2 px-2 gap-2 bg-white items-start">
-                        <div className='w-full flex flex-row flex-wrap-reverse justify-between gap-3'>
+                      <CardFooter className="flex flex-col py-2 px-2 gap-1.5 bg-white items-start">
+                        <div className='w-full flex flex-row flex-wrap-reverse justify-between gap-2'>
                           <div>
-                            <h3 className="font-bluefamily-def ">{product.item}</h3>
+                            <h3 className="font-bluefamily-def-H12 tracking-wider">{product.item}</h3>
                           </div>
-                          <div className="rounded-[5px] py-2 px-3 text-[10px] uppercase font-semibold tracking-wider font-bluefamily-def bg-gray-200 text-center">
+                          <div className="rounded-[5px] py-2 px-3 uppercase font-semibold tracking-wider font-bluefamily-def-H10 bg-gray-200 text-center">
                             {product.category}
                           </div>
                         </div>

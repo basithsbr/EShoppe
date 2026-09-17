@@ -166,13 +166,25 @@
   text-[13px]
 }
 
-@utility font-bluefamily-def-H4 {
+@utility font-bluefamily-def-H12 {
   @apply font-[Arial,sans-serif]
   text-[#071b4b]
-  tracking-[1px]
+  /* tracking-[1px] */
   text-[12px]
+  tracking-wider 
 }
-
+@utility font-bluefamily-def-H11 {
+  @apply font-[Arial,sans-serif]
+  text-[#071b4b]  
+  text-[11px]
+  tracking-wider 
+}
+@utility font-bluefamily-def-H10 {
+  @apply font-[Arial,sans-serif]
+  text-[#071b4b]  
+  text-[10px]
+  tracking-wider 
+}
 @utility font-redfamily-def {
   @apply font-[Arial,sans-serif]
   text-[#e91e63]
