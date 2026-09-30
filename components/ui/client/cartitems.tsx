@@ -6,6 +6,7 @@ import { Icon, SeparatorVertical, SlidersHorizontal, X } from "lucide-react";
 import React, { useEffect } from "react";
 import CartAmount from "./cartamount";
 import ContactDetails from "./contactdetails";
+import Link from "next/link";
 
 interface Props {
     cartItems: any[]
@@ -17,7 +18,7 @@ export default function CartItems() {
     const [cartItems, setCartItems] = React.useState(cartStoreItems);
     const [hasHydrated, setHydrated] = React.useState<boolean>(false);
     const cartAmount = useCartStore((state) => state.getCartAmount());
-    console.log("cartItems ",cartItems.length)
+    console.log("cartItems ", cartItems.length)
     const removeItem = (itemIndex: number) => {
         console.log("remove item - ", itemIndex);
         removeItemInCard(itemIndex);
@@ -29,19 +30,27 @@ export default function CartItems() {
         );
     }
 
+    const handleContactDetailsSubmit = (e: React.SubmitEvent) => {
+
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        const jsonObject = Object.fromEntries(formData.entries());
+        console.log('Form JSON Data:', JSON.stringify(jsonObject, null, 2));
+    }
+
     React.useEffect(() => {
         // setCartItems(useCartStore((state) => state.cart));
         setHydrated(true);
         console.log("Effect called...");
-    },[])
+    }, [])
 
     if (!hasHydrated) {
-        return <div>Loading cart...</div>; 
+        return <div>Loading cart...</div>;
     }
-    
+
     return (
-        
-        <div className="flex flex-col gap-5">            
+
+        <div className="flex flex-col gap-5">
             <div className="flex lg:flex-row md:flex-row flex-col shrink-0 gap-5 lg:gap-15">
                 <div className="flex flex-col gap-15 lg:w-1/2 md:w-2/3">
                     {
@@ -65,10 +74,10 @@ export default function CartItems() {
                                                     <h3 className="font-bluefamily-def-H2 font-semibold">{item.category}</h3>
                                                     {/* <h3 className="font-bluefamily-def-H2 font-semibold">{item.name}</h3> */}
                                                     <p className="font-bluefamily-def-H3">Size: {item.size}</p>
-                                                    <p className="font-bluefamily-def-H3">Price:  
+                                                    <p className="font-bluefamily-def-H3">Price:
                                                         <span className="font-bluefamily-def-H2 font-semibold">₹{item.price}
-                                                            </span>
-                                                        </p>
+                                                        </span>
+                                                    </p>
                                                     <p className="font-bluefamily-def-H3">Qty: {item.quantity}</p>
                                                 </div>
                                             </div>
@@ -94,20 +103,24 @@ export default function CartItems() {
                 }
             </div>
             <div className="horizontal-line-def"></div>
-            <ContactDetails></ContactDetails>
-            <div className="w-full text-right">
-                {
-                    cartStoreItems && cartStoreItems
-                        .length > 0 ? (
-                        <div>
-                            <button className="button-def">
-                                Proceed to Pay
-                            </button>
-                        </div>
-                    ) : ''
-                }
+            <form onSubmit={handleContactDetailsSubmit} className="space-y-4">
+                <ContactDetails></ContactDetails>
 
-            </div>
+                <div className="w-full text-right">
+                    {
+                        cartStoreItems && cartStoreItems
+                            .length > 0 ? (
+                            <div>
+                                <button type="submit" className="button-def">
+                                    Proceed to Pay
+                                </button>
+
+                            </div>
+                        ) : ''
+                    }
+
+                </div>
+            </form>
         </div>
     );
 }

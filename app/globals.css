@@ -159,11 +159,32 @@
   text-[14px]
 }
 
+@utility font-whitefamily-def-H2 {
+  @apply font-[Arial,sans-serif]
+  text-white
+  tracking-[1px]
+  text-[14px]
+}
+
 @utility font-bluefamily-def-H3 {
   @apply font-[Arial,sans-serif]
   text-[#071b4b]
   tracking-[1px]
   text-[13px]
+}
+
+@utility font-whitefamily-def-H3 {
+  @apply font-[Arial,sans-serif]
+  text-white
+  tracking-[1px]
+  text-[13px]
+}
+
+@utility font-whitefamily-def-H12 {
+  @apply font-[Arial,sans-serif]
+  text-white
+  tracking-[0.5px]
+  text-[12px]
 }
 
 @utility font-bluefamily-def-H12 {

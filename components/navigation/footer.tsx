@@ -6,6 +6,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import React, { Suspense } from "react";
 import { FilterController } from "../ui/client/filtercontrols";
+import { CurlyBracesIcon, HelpCircle, HelpCircleIcon, Home, HomeIcon, Icon, LucideHome, Package, SearchIcon } from "lucide-react";
+import { ProductIcon } from "../ui/icons/ProductIcon";
+import { PillHomeIcon } from "../ui/icons/PillHomeIcon";
 
 export function Footer() {
   const searchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -41,22 +44,22 @@ export function Footer() {
             </div>
 
             {/* Column 2: Quick Links */}
-            <div className="space-y-3" >
+            {/* <div className="space-y-3" >
               <h4 className="text-xs font-semibold uppercase tracking-wider ">Shop</h4>
               <ul className="space-y-2 text-sm">
                 <li><Link href="/shop" className="text-[#aeb9ce] hover:underline  hover:text-foreground">All Catalog</Link></li>
                 <li><Link href="/shop?cat=electronics" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Electronics</Link></li>
                 <li><Link href="/shop?cat=accessories" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Accessories</Link></li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Column 3: Corporate Info */}
             <div className="space-y-3">
               <h4 className="text-xs font-semibold uppercase tracking-wider ">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/about" className="text-[#aeb9ce] hover:underline  hover:text-foreground">About Us</Link></li>
-                <li><Link href="/careers" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Careers</Link></li>
-                <li><Link href="/privacy" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Privacy Policy</Link></li>
+                <li><Link href="/" className="text-[#aeb9ce] hover:underline  hover:text-foreground">About Us</Link></li>
+                {/* <li><Link href="/careers" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Careers</Link></li>
+                <li><Link href="/privacy" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Privacy Policy</Link></li> */}
               </ul>
             </div>
 
@@ -64,9 +67,9 @@ export function Footer() {
             <div className="space-y-3">
               <h4 className="text-xs font-semibold uppercase tracking-wider ">Support</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/contact" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Contact Us</Link></li>
-                <li><Link href="/faq" className="text-[#aeb9ce] hover:underline  hover:text-foreground">FAQs & Help</Link></li>
-                <li><Link href="/shipping" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Tracking</Link></li>
+                <li><Link href="#" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Contact Us</Link></li>
+                <li><Link href="#" className="text-[#aeb9ce] hover:underline  hover:text-foreground">FAQs & Help</Link></li>
+                {/* <li><Link href="/shipping" className="text-[#aeb9ce] hover:underline  hover:text-foreground">Tracking</Link></li> */}
               </ul>
             </div>
 
@@ -98,13 +101,15 @@ export function Footer() {
         ${homePage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
           {/* <Link href="/" className="text-sm font-medium hover:text-primary">Home</Link> */}
           {/* <Link href="/" className={getLinkClass("/")}>Home</Link> */}
-          <Link href="/?filter=new">Home</Link>
+          <Link href="/?filter=new">
+          <PillHomeIcon  className="w-20 h-4 text-gray-600" />Home</Link>
         </button>
 
         <button className={`w-full flex items-center hover:opacity-90 justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${shopPage ? 'border-t-[#071b4b] border-4 ' : 'border-transparent'}`}>
           {/* <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Products</Link> */}
-          <Link href="/shoppe">Products</Link>
+          <Link href="/shoppe">
+          <SearchIcon className="w-20 h-4" />Products</Link>
         </button>
 
         {/* <Link href="/shoppe" className="text-sm font-medium hover:text-primar
@@ -112,7 +117,8 @@ export function Footer() {
 
         <button className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${helpPage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
-          <Link href="/help" className="text-sm font-medium hover:text-primary">Help</Link>
+          <Link href="/help" className="text-sm font-medium hover:text-primary">
+          <HelpCircle className="w-20 h-4" />Help</Link>
         </button>
         <Suspense fallback={<div className="h-10 w-full animate-pulse" />}>
           <div className="max-w-sm rounded-1xl bg-white px-7 border-6 border-gray-100 flex items-center

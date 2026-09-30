@@ -42,7 +42,7 @@ export default function AutocompleteSearch() {
   const suggestions = filteredProducts.slice(0, 6)
 
   return (
-    <div ref={dropdownRef} className="w-full max-w-md mx-auto ">
+    <div ref={dropdownRef} className="w-full max-w-md mx-auto">
       {/* Search Input field */}
       <input
         type="text"
@@ -57,7 +57,8 @@ export default function AutocompleteSearch() {
       {/* Autocomplete Dropdown Panel */}
       {isOpen && suggestions.length > 0 && (
         <ul className="
-        absolute left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl max-h-80 overflow-y-auto overflow-hidden divide-y divide-gray-100">
+        absolute left-1/2 -translate-x-1/2  mt-1 w-10/11 md:w-2/3 lg:w-2/3 flex flex-col justify-center py-10 bg-white border border-gray-200 
+        rounded-lg shadow-xl max-h-80 overflow-y-auto overflow-hidden divide-y divide-gray-100">
           {suggestions.map((product) => (
             <li 
               key={product._id}

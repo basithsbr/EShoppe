@@ -48,10 +48,12 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
                 <Link href="/shoppe/?category=new" className="font-bluefamily-def-H2 underline flex justify-end">show All</Link>
                 <button
                     onClick={() => scroll('left')}
-                    className="absolute md:hidden hidden lg:block left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
+                    className="
+                    flex items-center justify-center absolute  lg:block left-0 top-1/2 -translate-y-1/2 z-10  bg-white rounded-full shadow-md
+                     hover:bg-gray-50 text-gray-800 transition-all border w-10 h-10"
                     aria-label="Scroll left"
                 >
-                    <span className="text-xl flex items-center justify-center font-bold font-mono">‹</span>
+                    <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def">‹</span>
                 </button>
 
                 {/* Scrollable Container (Only contains cards now) */}
@@ -62,10 +64,11 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
                     {children}
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute md:hidden hidden lg:block right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
+                        className="absolute  lg:block right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md
+                         hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
                         aria-label="Scroll right"
                     >
-                        <span className="text-xl font-bold font-mono">›</span>
+                        <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def">›</span>
                     </button>
                 </div>
             </div>
