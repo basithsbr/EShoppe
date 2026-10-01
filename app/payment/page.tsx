@@ -15,11 +15,11 @@ const cartAmount = useCartStore((state) => state.getCartAmount());
     cvv: '',
   });
 
-  const handleCardChange = (e) => {
+  const handleCardChange = (e: React.SubmitEvent) => {
     setCardData({ ...cardData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     alert(`Payment processed successfully via ${paymentMethod.toUpperCase()}!`);
   };
