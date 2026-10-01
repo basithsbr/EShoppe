@@ -97,28 +97,29 @@ export function Footer() {
         {/* // className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all */}
         {/* // ${page === 'home' ? 'border-black' : 'border-transparent'}`} */}
         <button
-          className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
+          className={`w-full flex items-center justify-center h-10 text-black text-[10px] font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${homePage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
           {/* <Link href="/" className="text-sm font-medium hover:text-primary">Home</Link> */}
           {/* <Link href="/" className={getLinkClass("/")}>Home</Link> */}
           <Link href="/?filter=new">
-          <PillHomeIcon  className="w-20 h-4 text-gray-600" />Home</Link>
+          <PillHomeIcon  className="w-15 h-3 text-gray-600" />Home</Link>
         </button>
 
-        <button className={`w-full flex items-center hover:opacity-90 justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
+        <button className={`w-full flex items-center hover:opacity-90 justify-center h-10 text-black text-[10px] font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${shopPage ? 'border-t-[#071b4b] border-4 ' : 'border-transparent'}`}>
           {/* <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Products</Link> */}
           <Link href="/shoppe">
-          <SearchIcon className="w-20 h-4" />Products</Link>
+          <SearchIcon className="w-15 h-3" />Products</Link>
         </button>
 
         {/* <Link href="/shoppe" className="text-sm font-medium hover:text-primar
         {/* <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Products</Link> */}
 
-        <button className={`w-full flex items-center justify-center h-14 text-black text-sm font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
+        <button className={`w-full flex items-center justify-center h-10 text-black text-[10px]
+         font-medium border active:bg-[#aba2a2] active:scale-95 transition-all
         ${helpPage ? 'border-t-[#071b4b] border-4' : 'border-transparent'}`}>
-          <Link href="/help" className="text-sm font-medium hover:text-primary">
-          <HelpCircle className="w-20 h-4" />Help</Link>
+          <Link href="/help" className="font-medium hover:text-primary">
+          <HelpCircle className="w-15 h-3" />Help</Link>
         </button>
         <Suspense fallback={<div className="h-10 w-full animate-pulse" />}>
           <div className="max-w-sm rounded-1xl bg-white px-7 border-6 border-gray-100 flex items-center
