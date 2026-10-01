@@ -14,11 +14,12 @@ export default function HelpPage() {
                         </div>
                         
                         <span className="font-bluefamily-def-H12">
-                            For any queries, Please reach out us @&nbsp;
+                            For any queries, Please reach out us by                           
+                        </span>
+                        <span className="font-bluefamily-def-H14 flex text-center items-center">
                             
-                            <span className="font-bluefamily-def-H14"> 
-                                <MailIcon className="inline h-5"></MailIcon> 
-                                <span className="font-bluefamily-def-H14"> test@gmail.com</span></span>
+                                <MailIcon className="inline text-[#e91e63]"></MailIcon> &nbsp;
+                                <a className="font-bluefamily-def-H14 "> test@gmail.com</a>
                         </span>
                         <span>
                             (OR)
