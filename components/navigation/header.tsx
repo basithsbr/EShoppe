@@ -82,7 +82,7 @@ export function Header() {
             {/* <Link href="/" className={getLinkClass("/")} onClick={handleNavigateHome}>Home</Link> */}
             <Link href="/?filter=new" className={getLinkClass("/")}>Home</Link>
             <Link href="/shoppe" className={getLinkClass("/shoppe/")}>Shop</Link>
-            <Link href="/about" className="text-sm font-medium font-bluefamily-def active:font-redfamily-def hover:text-foreground transition-colors">About</Link>
+            <Link href="/help" className="text-sm font-medium font-bluefamily-def active:font-redfamily-def hover:text-foreground transition-colors">Help</Link>
           </nav>
 
           {/* Search Bar & Action Buttons */}
