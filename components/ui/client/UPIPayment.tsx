@@ -4,10 +4,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { PaymentStatus, PaymentCheckResponse, UpiParams } from '@/types/UPI';
 
 interface UpiPaymentProps {
-  orderId?: string;
-  amount?: number;
-  merchantVpa?: string;
-  merchantName?: string;
+  orderId: string;
+  amount: number;
+  merchantVpa: string;
+  merchantName: string;
   onSuccess: () => void;
   onFailure: () => void;
 }
