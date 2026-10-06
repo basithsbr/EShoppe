@@ -7,12 +7,14 @@ import React, { useEffect } from "react";
 import CartAmount from "./cartamount";
 import ContactDetails from "./contactdetails";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
     cartItems: any[]
 }
 
 export default function CartItems() {
+    const router = useRouter();
     const cartStoreItems = useCartStore((state) => state.cart);
     const removeItemInCard = useCartStore((state) => state.removeItemInCard);
     const [cartItems, setCartItems] = React.useState(cartStoreItems);
@@ -36,6 +38,7 @@ export default function CartItems() {
         const formData = new FormData(e.currentTarget as HTMLFormElement);
         const jsonObject = Object.fromEntries(formData.entries());
         console.log('Form JSON Data:', JSON.stringify(jsonObject, null, 2));
+        router.push('/payment');
     }
 
     React.useEffect(() => {
@@ -50,7 +53,7 @@ export default function CartItems() {
 
     return (
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 bg-white">
             <div className="flex lg:flex-row md:flex-row flex-col shrink-0 gap-5 lg:gap-15">
                 <div className="flex flex-col gap-15 lg:w-1/2 md:w-2/3">
                     {
