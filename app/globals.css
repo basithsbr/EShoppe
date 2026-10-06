@@ -274,6 +274,14 @@
   position: relative;
   transform: translateY(-0.125rem); /* This is -translate-y-0.5 */
 }
+@utility shadow-border-t-def {
+  @apply shadow-lg border border-slate-200/60 p-5 rounded-t-xl;
+  
+  /* In v4, complex transforms inside @apply can behave unpredictably. 
+     Using standard CSS properties here guarantees it compiles perfectly. */
+  position: relative;
+  transform: translateY(-0.125rem); /* This is -translate-y-0.5 */
+}
 
 @utility font-subtitle-def {
   @apply flex flex-col gap-2 py-2 rounded-xl bg-slate-50/50 tracking-[1px] text-muted-foreground font-bold uppercase text-[12px];  

@@ -31,7 +31,7 @@ export function Footer() {
   // }
   return (
     <>
-      <footer className="w-full border-t bg-card text-card-foreground mt-auto text-white">
+      <footer className="w-full bg-card mt-auto text-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[#071b4b] text-white" >
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
