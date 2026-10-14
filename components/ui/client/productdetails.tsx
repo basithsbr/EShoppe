@@ -7,6 +7,7 @@ import React from "react";
 import { useCartStore } from "@/app/store/CommonStore";
 import { ReadStream } from "fs";
 import { ShowCardsScrollH } from "../server/cardsscrollH";
+import ProductDetailsImage from "./ProductDetailsImage";
 
 
 interface Props {
@@ -16,11 +17,17 @@ interface Props {
 
 export function ProductDetails({ product, children }: Props) {
   const [sizeButton, setSizeButton] = React.useState<string | null>(null);
+  const [showAddCart, setShowAddCart] = React.useState(false);
+
   const addToCartStore = useCartStore((state) => state.addToCart);
   const addToCart = (product: any) => {
-    product = {...product, size: sizeButton};
-    console.log("updated product - ",product);
-    addToCartStore({...product, size: sizeButton});
+    product = { ...product, size: sizeButton };
+    console.log("updated product - ", product);
+    addToCartStore({ ...product, size: sizeButton });
+    setShowAddCart(true)
+    setTimeout(() => {
+      setShowAddCart(false);
+  }, 2000);
   }
 
   const sizeButtons = [
@@ -31,7 +38,7 @@ export function ProductDetails({ product, children }: Props) {
     { id: 'XXL', label: 'XXL' },
     { id: 'XXXL', label: 'XXXL' },
   ];
-  
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -41,14 +48,7 @@ export function ProductDetails({ product, children }: Props) {
           </div>
           <div className=" flex lg:flex-row md:flex-col flex-col py-3">
             <div className="px-4 border-slate-200/60 flex flex-col gap-4 w-full md:w-full lg:w-full">
-              <div className=" w-full flex align-center justify-center h-2/4">
-                <img
-                  src={product.image_url}
-                  alt={product.name}
-                  className="text-center 
-                      lg:w-1/2 object-contain border-0 transform group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+              <ProductDetailsImage product={product}></ProductDetailsImage>
               <div className="flex flex-row gap-10 mt-2 py-5">
                 <div className="font-redfamily-def text-[15px] flex">
                   size
@@ -109,12 +109,21 @@ export function ProductDetails({ product, children }: Props) {
                       onClick={() => addToCart(product)}
                       className="button-def">
                       Add To Cart</Button>
+                    <div className={`text-green-600 text-[12px] font-bluefamily-def mt-1 p-4
+                      shadow-border-def-p1 rounded-xl border-2 absolute ${showAddCart ? 'block' : 'hidden'}  bg-green-100`}>
+                      <span className="text-[12px] font-extrabold text-green-800">
+                        Added to cart !!
+                      </span>
+                    </div>
                   </div>
+
                   <div>
                     <Button className="button-def">
                       Enquiry Whatsapp</Button>
                   </div>
+
                 </div>
+
                 <div className="horizontal-line-def" aria-hidden="true" />
                 <div className="">
                   <h4 className="font-subtitle-def">
@@ -165,27 +174,27 @@ export function ProductDetails({ product, children }: Props) {
 
         </div>
       </div>
-      <div className="flex flex-col gap-1"  > 
-      <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
-                <div id="head" className="grid flex-col gap-5">                    
-                    {/* <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]"> */}
-                      <h1 className="font-bluefamily-def-H16 font-semibold">
-                      Related Products
-                      </h1>
-                </div>
-        <div>
-          {children}
+      <div className="flex flex-col gap-1"  >
+        <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
+          <div id="head" className="grid flex-col gap-5">
+            {/* <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]"> */}
+            <h1 className="font-bluefamily-def-H16 font-semibold">
+              Related Products
+            </h1>
+          </div>
+          <div>
+            {children}
+          </div>
         </div>
-      </div>
-      <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
-                <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="font-bluefamily-def-H16 font-semibold">
-                      You May Also Like</h1>
-                </div>
-        <div>
-          {children}
+        <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
+          <div id="head" className="grid flex-col gap-5">
+            <h1 className="font-bluefamily-def-H16 font-semibold">
+              You May Also Like</h1>
+          </div>
+          <div>
+            {children}
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

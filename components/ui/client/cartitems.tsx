@@ -70,10 +70,10 @@ export default function CartItems() {
                                                     <X size={20} />
                                                 </button>
                                             </div>
-                                            <div key={index} className="flex flex-row gap-5 lg:justify-center md:justify-start justify-start">
+                                            <div key={index} className="flex flex-row gap-5 items-start lg:justify-center md:justify-start justify-start">
                                                 <Link href={`/product/${item._id}`}>
                                                     <div className="w-[150px] h-[150px] flex-1">
-                                                        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
+                                                        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain object-top"  />
                                                     </div>
                                                 </Link>
                                                 <div className="flex flex-col gap-2 w-1/3  items-start justify-start">

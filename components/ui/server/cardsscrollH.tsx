@@ -49,7 +49,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
                 <button
                     onClick={() => scroll('left')}
                     className="
-                    flex items-center justify-center absolute  lg:block left-0 top-1/2 -translate-y-1/2 z-10  bg-white rounded-full shadow-md
+                    flex items-center justify-center absolute  lg:block left-0 top-2/5 -translate-y-1/2 z-10  bg-white rounded-full shadow-md
                      hover:bg-gray-50 text-gray-800 transition-all border w-10 h-10"
                     aria-label="Scroll left"
                 >
@@ -64,7 +64,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
                     {children}
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute  lg:block right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md
+                        className="absolute lg:block right-0 top-2/5 -translate-y-1/2 z-10 bg-white rounded-full shadow-md
                          hover:bg-gray-50 text-gray-800 transition-all flex items-center justify-center border w-10 h-10"
                         aria-label="Scroll right"
                     >
