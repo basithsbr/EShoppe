@@ -26,7 +26,7 @@ export function Header() {
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [loginOpen, setLoginOpen] = React.useState(false);
   const [avatar, setAvatar] = React.useState();
-  const [name, setName] = React.useState();
+  const [name, setName] = React.useState<string>();
   const appId = process.env.NEXT_PUBLIC_META_APP_ID;
   // const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_META_REDIRECT_URI || '');
   const redirectUri = process.env.NEXT_PUBLIC_META_REDIRECT_URI;
