@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { PaymentStatus, PaymentCheckResponse, UpiParams } from '@/types/UPI';
+import { Button } from '@base-ui/react';
 
 interface UpiPaymentProps {
   orderId: string;
@@ -40,10 +41,40 @@ export default function UpiPayment({
   }, [orderId, amount, merchantVpa, merchantName]);
 
   // 2. Start checking the server for updates (Long-Polling)
-  useEffect(() => {
-    if (paymentStatus === 'PENDING') {
-      pollingRef.current = setInterval(async () => {
-        try {
+  // useEffect(() => {
+  //   if (paymentStatus === 'PENDING') {
+  //     pollingRef.current = setInterval(async () => {
+  //       try {
+  //         const res = await fetch(`/EShoppe/api/payment/status?orderId=${orderId}`);
+  //         if (res.ok) {
+  //           const data: PaymentCheckResponse = await res.json();
+            
+  //           if (data.status === 'SUCCESS') {
+  //             setPaymentStatus('SUCCESS');
+  //             clearInterval(pollingRef.current!);
+  //             onSuccess();
+  //           } else if (data.status === 'FAILED') {
+  //             setPaymentStatus('FAILED');
+  //             clearInterval(pollingRef.current!);
+  //             onFailure();
+  //           }
+  //         }
+  //       } catch (err) {
+  //         console.error('Error polling payment status:', err);
+  //       }
+  //     }, 3000); // Check your server status every 3 seconds
+  //   }
+
+  //   return () => {
+  //     if (pollingRef.current) clearInterval(pollingRef.current);
+  //   };
+  // }, [paymentStatus, orderId, onSuccess, onFailure]);
+  const submitPaymentHandler = async () => {
+    if (upiUrl) {
+      window.location.href = upiUrl;   
+    }
+
+    try {
           const res = await fetch(`/EShoppe/api/payment/status?orderId=${orderId}`);
           if (res.ok) {
             const data: PaymentCheckResponse = await res.json();
@@ -61,13 +92,7 @@ export default function UpiPayment({
         } catch (err) {
           console.error('Error polling payment status:', err);
         }
-      }, 3000); // Check your server status every 3 seconds
     }
-
-    return () => {
-      if (pollingRef.current) clearInterval(pollingRef.current);
-    };
-  }, [paymentStatus, orderId, onSuccess, onFailure]);
 
   return (
     <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm bg-white max-w-sm mx-auto">
@@ -77,12 +102,11 @@ export default function UpiPayment({
       {paymentStatus === 'PENDING' && (
         <div className="w-full text-center space-y-4">
           {/* Action button visible/clickable primarily on Mobile Devices */}
-          <a
-            href={upiUrl}
-            className="block w-full py-3 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition text-center"
-          >
+          <Button className="block w-full py-3 px-4 blue-def text-white font-medium rounded-md hover:red-def transition 
+          text-center cursor-pointer"
+          onClick={submitPaymentHandler}>
             Open UPI App (GPay/PhonePe)
-          </a>
+          </Button>
 
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 pt-2">
             <span className="animate-spin h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full"></span>

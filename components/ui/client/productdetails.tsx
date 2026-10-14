@@ -36,10 +36,10 @@ export function ProductDetails({ product, children }: Props) {
     <>
       <div className="flex items-center justify-center">
         <div className="lg:w-6/7">
-          <div className="font-bluefamily-def text-[18px] font-extrabold border-b py-2 px-4">
+          <div className="font-bluefamily-def-H16 font-bold border-b py-2 px-4">
             {product.model}
           </div>
-          <div className=" flex lg:flex-row md:flex-col flex-col py-3 ">
+          <div className=" flex lg:flex-row md:flex-col flex-col py-3">
             <div className="px-4 border-slate-200/60 flex flex-col gap-4 w-full md:w-full lg:w-full">
               <div className=" w-full flex align-center justify-center h-2/4">
                 <img
@@ -70,7 +70,7 @@ export function ProductDetails({ product, children }: Props) {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 p-5 w-full shadow-border-def">
+            <div className="flex flex-col gap-4 p-5 w-full shadow-border-def bg-white">
               <div className="flex flex-col  gap-4 md:gap-8 lg:gap-8">
                 <div className="">
                   <h4 className="font-subtitle-def">Price</h4>
@@ -165,11 +165,13 @@ export function ProductDetails({ product, children }: Props) {
 
         </div>
       </div>
-      <div className="flex flex-col gap-2"  > 
+      <div className="flex flex-col gap-1"  > 
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">
-                      Related Products</h1>
+                    {/* <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]"> */}
+                      <h1 className="font-bluefamily-def-H16 font-semibold">
+                      Related Products
+                      </h1>
                 </div>
         <div>
           {children}
@@ -177,7 +179,7 @@ export function ProductDetails({ product, children }: Props) {
       </div>
       <div id="section2" className="w-full overflow-hidden bg-[#f5f7fb] flex-col gap-10 px-[10px] py-[10px] md:px-[20px] md:py-[30px] lg:px-[30px] lg:py-[20px] ">
                 <div id="head" className="grid flex-col gap-5">                    
-                    <h1 className="text-[#071b4b] font-bold lg:text-[20px] text-[20px] md:text-[5vw] leading-[1.1]">
+                    <h1 className="font-bluefamily-def-H16 font-semibold">
                       You May Also Like</h1>
                 </div>
         <div>

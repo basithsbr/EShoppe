@@ -173,6 +173,13 @@
   text-[13px]
 }
 
+@utility font-bluefamily-def-H16 {
+  @apply font-[Arial,sans-serif]
+  text-[#071b4b]
+  tracking-[0.5px]
+  text-[16px]
+}
+
 @utility font-whitefamily-def-H3 {
   @apply font-[Arial,sans-serif]
   text-white
@@ -274,6 +281,16 @@
   position: relative;
   transform: translateY(-0.125rem); /* This is -translate-y-0.5 */
 }
+
+@utility shadow-border-def-p1 {
+  @apply shadow-lg border border-slate-200/60 p-3 rounded-xl;
+  
+  /* In v4, complex transforms inside @apply can behave unpredictably. 
+     Using standard CSS properties here guarantees it compiles perfectly. */
+  position: relative;
+  transform: translateY(-0.125rem); /* This is -translate-y-0.5 */
+}
+
 @utility shadow-border-t-def {
   @apply shadow-lg border border-slate-200/60 p-5 rounded-t-xl;
   

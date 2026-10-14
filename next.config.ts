@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // output: 'export', 
   basePath: '/EShoppe', 
   trailingSlash: true,
+  skipTrailingSlashRedirect: true, 
   images: {
     unoptimized: true, 
   },

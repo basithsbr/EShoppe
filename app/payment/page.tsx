@@ -157,7 +157,17 @@ export default function PaymentPage() {
                             )}
 
                             {paymentMethod === 'upi' && (
-                                <div className="space-y-4">
+                            <div className="flex flex-col gap-4 justify-center items-center">
+                                <UpiPayment
+                                orderId={orderDetails.orderId}
+                                amount={orderDetails.amount}
+                                merchantVpa={orderDetails.merchantVpa}
+                                merchantName={orderDetails.merchantName}
+                                onSuccess={handlePaymentSuccess}
+                                onFailure={handlePaymentFailure}
+                            />
+                            (OR)
+                                <div className="space-y-4 w-full">
                                     <div>
                                         <label className="block font-semibold font-bluefamily-def-H12 uppercase mb-1">Enter UPI ID</label>
                                         <input
@@ -174,6 +184,7 @@ export default function PaymentPage() {
                                         <span className="text-xs text-slate-500 font-medium">Or scan QR code using any UPI app</span>
                                     </div>
                                 </div>
+                                </div>
                             )}
 
                             {/* <button
@@ -182,14 +193,7 @@ export default function PaymentPage() {
               >
                 Pay ₹ {cartAmount}
               </button> */}
-                            <UpiPayment
-                                orderId={orderDetails.orderId}
-                                amount={orderDetails.amount}
-                                merchantVpa={orderDetails.merchantVpa}
-                                merchantName={orderDetails.merchantName}
-                                onSuccess={handlePaymentSuccess}
-                                onFailure={handlePaymentFailure}
-                            />
+                            
 
                         </form>
                     </div>

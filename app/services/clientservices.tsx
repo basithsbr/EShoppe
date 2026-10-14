@@ -1,4 +1,5 @@
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export async function fetchLiveData(searchParams: Promise<{ [key: string]: string | string[] | undefined }>) {
 
@@ -99,3 +100,27 @@ export async function getRelatedProductBy(id: string) {
     return JSON.parse(JSON.stringify(data));
 
 }
+
+
+export const insertAddress = async (addressData: any) => {
+  const response = await fetch(`${BASE_PATH}/api/address/`, { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(addressData),
+  });
+  return response.json();
+};
+
+// export const getAddressesByUserId = async (userId: string | number) => {
+//   // Appends ?userId=YOUR_ID to the request URL
+//   const response = await fetch(`${BASE_PATH}/api/address?userId=${userId}`, { 
+//     method: 'GET',
+//     headers: { 'Content-Type': 'application/json' },
+//   });
+
+//   if (!response.ok) {
+//     throw new Error(`Failed to fetch addresses for user ${userId}`);
+//   }
+  
+//   return response.json();
+// };

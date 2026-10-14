@@ -9,9 +9,9 @@ export default function CartPage() {
     const cartStoreItems = useCartStore((state) => state.cart);
     return (
         <>
-            <div className="flex justify-center">
+            <div className="flex justify-center lg:px-[120px]">
                 <div className="w-full overflow-hidden flex-col gap-10 
-                px-[10px] py-[30px] md:px-[20px] md:py-[30px] lg:px-[70px] lg:py-[30px] 
+                px-[10px] py-[15px] md:px-[20px] md:py-[20px] lg:px-[18px] lg:py-[20px] 
                 lg:w-3/4 blue-def rounded-t-2xl">
                     <div id="head" className="flex flex-col gap-5 px-2 pb-2">
                         <h1 className="font-whitefamily-def-H2 font-semibold">Your Cart ({cartStoreItems.length} Items)</h1>

@@ -8,6 +8,7 @@ import CartAmount from "./cartamount";
 import ContactDetails from "./contactdetails";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { insertAddress } from "@/app/services/clientservices";
 
 interface Props {
     cartItems: any[]
@@ -38,6 +39,7 @@ export default function CartItems() {
         const formData = new FormData(e.currentTarget as HTMLFormElement);
         const jsonObject = Object.fromEntries(formData.entries());
         console.log('Form JSON Data:', JSON.stringify(jsonObject, null, 2));
+        insertAddress(JSON.stringify(jsonObject, null, 2));
         router.push('/payment');
     }
 
@@ -61,20 +63,21 @@ export default function CartItems() {
                             <>
                                 <div className="flex flex-col gap-5">
                                     {cartStoreItems.map((item, index) => (
-                                        <div key={index} className="flex flex-col gap-5">
-                                            <div className="w-full text-right">
+                                        <div key={index} className="flex flex-col gap-1">
+                                            <div className="w-full text-right items-center flex justify-end">
                                                 <button key={index} onClick={() => removeItem(index)}
                                                     className="close-btn cursor-pointer">
                                                     <X size={20} />
                                                 </button>
                                             </div>
-                                            <div key={index} className="flex flex-row gap-5">
-
-                                                <div className="w-[150px] h-[150px] flex-1">
-                                                    <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
-                                                </div>
-                                                <div className="flex flex-col gap-2 w-1/3 py-3">
-                                                    <h3 className="font-bluefamily-def-H2 font-semibold">{item.category}</h3>
+                                            <div key={index} className="flex flex-row gap-5 lg:justify-center md:justify-start justify-start">
+                                                <Link href={`/product/${item._id}`}>
+                                                    <div className="w-[150px] h-[150px] flex-1">
+                                                        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain" />
+                                                    </div>
+                                                </Link>
+                                                <div className="flex flex-col gap-2 w-1/3  items-start justify-start">
+                                                    <h3 className="font-bluefamily-def-H2 font-semibold wrap-break-word">{item.category}</h3>
                                                     {/* <h3 className="font-bluefamily-def-H2 font-semibold">{item.name}</h3> */}
                                                     <p className="font-bluefamily-def-H3">Size: {item.size}</p>
                                                     <p className="font-bluefamily-def-H3">Price:
@@ -84,7 +87,8 @@ export default function CartItems() {
                                                     <p className="font-bluefamily-def-H3">Qty: {item.quantity}</p>
                                                 </div>
                                             </div>
-                                            <hr></hr>
+                                            {cartStoreItems.length > index + 1 ? <hr className="mt-5"></hr> : ''}
+                                            
                                         </div>
                                     ))}
                                 </div>

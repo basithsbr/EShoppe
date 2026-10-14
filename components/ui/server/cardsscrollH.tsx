@@ -42,7 +42,7 @@ export function ShowCardsScrollH({ searchParams, type, children}: props) {
     return (
         <>
             {/* Parent wrapper with px-6 to offset absolute buttons */}
-            <div className="relative w-full px-2 py-5">
+            <div className="relative w-full px-2 py-2">
                 {/* Left Arrow Button (Outside flex) */}
                 
                 <Link href="/shoppe/?category=new" className="font-bluefamily-def-H2 underline flex justify-end">show All</Link>

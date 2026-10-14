@@ -11,10 +11,13 @@ export default function CartAmount({amount = 0, page}:{amount?: number, page?:st
 
         <div className="shadow-border-def flex-1 p-5 h-fit">
             <div className="flex flex-col gap-5 ">
+                <div className="flex flex-col gap-2">
                 <h1 className={`pagefont font-semibold`}>
                     Order Summary
+                    
                 </h1>
-
+                <hr></hr>
+                </div>
                 <div>
                     <div className="flex flex-row justify-between">
                         <span className={`style_font_H3`}>Cart Items Price</span>
@@ -39,7 +42,7 @@ export default function CartAmount({amount = 0, page}:{amount?: number, page?:st
                 </div>
                 <hr></hr>
                 <div className="flex flex-row justify-between">
-                    <span>Total</span>
+                    <span className={`style_font_H3 font-semibold`}>Total</span>
                     <span className={`pagefont font-semibold`}>₹ {totalCartAmount(amount, 0 ,0 ,0)}</span>
                 </div>
             </div>
