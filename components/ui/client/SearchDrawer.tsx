@@ -36,7 +36,7 @@ export default function SearchDrawer({open, setSearchOpen} : {open:boolean, setS
              ${open ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}
         >
         <div className="flex-1 overflow-y-auto px-6">
-          <SearchBar></SearchBar>
+          <SearchBar setSearchOpen={setSearchOpen}></SearchBar>
         </div>
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-black"></h2>

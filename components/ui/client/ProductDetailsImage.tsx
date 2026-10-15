@@ -2,7 +2,8 @@ import React from "react";
 
 
 export default function ProductDetailsImage({ product }: { product: any }) {
-    const [selectedImage, setSelectedImage] = React.useState<string>(product.image);
+    const [selectedImage, setSelectedImage] = React.useState<string>(product.image_url);
+    const [imageIndex, setImageIndex] = React.useState<number>(0);
     const scrollContainerRef = React.useRef<HTMLDivElement>(null);
         const scroll = (direction: 'left' | 'right') => {
             if (scrollContainerRef.current) {
@@ -13,12 +14,30 @@ export default function ProductDetailsImage({ product }: { product: any }) {
                 });
             }
         };
+    
+    const otherImages = [
+        product.image_url,
+        'dummy-image-1.jpg',
+        product.image_url,
+        product.image_url,
+        'dummy-image-1.jpg',
+        product.image_url,
+        product.image_url,
+        'dummy-image-1.jpg',
+        product.image_url,
+        product.image_url
+    ]
+    
+    const handleImageClick = (imageUrl: string, index: number) => {
+        setSelectedImage(imageUrl);
+        setImageIndex(index);
+    };
+
     return (
         <>
             <div className=" w-full flex align-center justify-center h-2/4">
                 <img
-                    src={product.image_url}
-                    alt={product.name}
+                    src={selectedImage}                
                     className="text-center 
                       lg:w-1/2 object-contain border-0 transform group-hover:scale-105 transition-transform duration-300"
                 />
@@ -38,48 +57,17 @@ export default function ProductDetailsImage({ product }: { product: any }) {
                     ref={scrollContainerRef}
                     className="flex overflow-x-auto gap-3 pb-4 scrollbar-none snap-x snap-mandatory scroll-smooth"
                     > 
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                    w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
-                <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="text-center 
-                      w-20 object-contain border-[#071b4b] border-2 transform group-hover:scale-105 transition-transform duration-300"
-                />
+                {otherImages && otherImages.length > 0 && otherImages.map((imageUrl, index) => (
+                    <img
+                        key={index}
+                        src={imageUrl}
+                        alt={product.name}
+                        className={`text-center 
+                          w-20 object-contain border-[#071b4b] ${imageIndex === index ? 'border-2' : ''} transform group-hover:scale-105 transition-transform duration-300`}
+                        onClick={() => handleImageClick(imageUrl,index)}
+                    />
+                ))}
+                
                 </div>
                 <button
                         onClick={() => scroll('right')}

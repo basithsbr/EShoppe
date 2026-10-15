@@ -58,6 +58,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
   setSearchOpen: (isOpen) => set({ isSearchOpen: isOpen }),
   // Fetch the full catalog once on app load
   fetchCatalog: async () => {
+    console.log("fetchCatalog - ");
     if (get().allProducts.length > 0) return; // Already loaded
     
     set({ isLoading: true });
@@ -76,9 +77,14 @@ export const useProductStore = create<ProductState>((set, get) => ({
   // High-speed client side search and filter function
   filterProducts: (searchTerm: string, category = 'all') => {
     const { allProducts } = get();
+    console.log("searchTerm - ",searchTerm);
+    if(searchTerm === ' ') {
+        set({ filteredProducts: [] });
+        return;
+    }
     const query = searchTerm.toLowerCase().trim();
-
-    const results = allProducts.filter((product) => {
+    
+      const results = allProducts.filter((product) => {
       const matchesSearch = query ? product.category.toLowerCase().includes(query) : true;
       const matchesCategory = category !== 'all' ? product.category === category : true;
       return matchesSearch && matchesCategory;
