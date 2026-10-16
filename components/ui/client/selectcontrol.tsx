@@ -29,7 +29,7 @@ export default function SelectControls({ searchParams }: Props) {
   return (
     <>
       <Select onValueChange={sortBy} >
-        <SelectTrigger className="w-[160px] bg-[#071b4b] text-white font-[Arial,sans-serif] z-50 text-[13px] flex items-center justify-between">
+        <SelectTrigger className="w-[160px] bg-[#071b4b] text-white font-[Arial,sans-serif] text-[13px] flex items-center justify-between">
           <SelectValue className="font-bluefamily-def-H12 text-white pointer-events-none" placeholder="Sort by" />
         </SelectTrigger>
         <SelectContent >
