@@ -17,13 +17,13 @@ export default function ProductDetailsImage({ product }: { product: any }) {
     
     const otherImages = [
         product.image_url,
-        'dummy-image-1.jpg',
+        product.image_url1,
         product.image_url,
         product.image_url,
-        'dummy-image-1.jpg',
+        product.image_url1,
         product.image_url,
         product.image_url,
-        'dummy-image-1.jpg',
+        product.image_url1,
         product.image_url,
         product.image_url
     ]

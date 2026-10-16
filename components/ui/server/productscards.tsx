@@ -52,11 +52,13 @@ export default async function ServerCard({ searchParams, style, cardClass,wrappe
                           alt={product.name}
                           className="rounded-t-[10px] object-center h-full w-full border-0 transform group-hover:scale-105 transition-transform duration-300"
                         />
-                        <Button
+                        
+                        {/* <Button
                           className="absolute top-3 right-3 rounded-full opacity-90 hover:opacity-100 shadow-sm"
                         >
                           <Heart className="h-4 w-4 text-muted-foreground group-hover:text-destructive group-hover:fill-destructive" />
-                        </Button>
+                        </Button> */}
+                        
                       </CardContent>
                       <CardFooter className="flex flex-col py-2 px-2 gap-1.5 bg-white items-start">
                         <div className='w-full flex flex-row flex-wrap-reverse justify-between gap-2'>
