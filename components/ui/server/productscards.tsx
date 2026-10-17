@@ -71,7 +71,7 @@ export default async function ServerCard({ searchParams, style, cardClass,wrappe
                         </div>
 
                         <span className="flex flex-row text-sm font-medium font-bluefamily-def"><IndianRupee className="mt-1 h-3 w-3" />{product.price}</span>
-                        <Button className="w-full cursor-pointer text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[13px] font-semi font-[family:Arial,sans-serif]">
+                        <Button className="w-full cursor-pointer text-white font-bluefamily-def rounded-[5px] py-[10px] bg-[#071b4b] text-[13px]">
                           View</Button>
                       </CardFooter>
                     </Card>

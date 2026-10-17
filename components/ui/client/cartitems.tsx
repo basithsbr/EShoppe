@@ -1,7 +1,7 @@
 'use client'
 
 import { useCartStore } from "@/app/store/CommonStore";
-import { Button, Separator, Slider } from "@base-ui/react";
+import { Button, Input, Separator, Slider } from "@base-ui/react";
 import { Icon, SeparatorVertical, SlidersHorizontal, X } from "lucide-react";
 import React, { useEffect } from "react";
 import CartAmount from "./cartamount";
@@ -18,8 +18,10 @@ export default function CartItems() {
     const router = useRouter();
     const cartStoreItems = useCartStore((state) => state.cart);
     const removeItemInCard = useCartStore((state) => state.removeItemInCard);
+    const updateItemInCard = useCartStore((state) => state.updateCart);
     const [cartItems, setCartItems] = React.useState(cartStoreItems);
     const [hasHydrated, setHydrated] = React.useState<boolean>(false);
+    const [qty, setQty] = React.useState<number>();
     const cartAmount = useCartStore((state) => state.getCartAmount());
     console.log("cartItems ", cartItems.length)
     const removeItem = (itemIndex: number) => {
@@ -30,9 +32,14 @@ export default function CartItems() {
             // console.log("test")
             prevItems.filter((_, idx) => idx !== itemIndex)
 
-        );
+        )
+    } 
+     const updateCart = (item: any, qty: number, index: number) => {
+        console.log("updateCart : ",qty)
+        const product = {...item, qty: qty};
+        console.log("product : ",product);
+        updateItemInCard(index,product);
     }
-
     const handleContactDetailsSubmit = (e: React.SubmitEvent) => {
 
         e.preventDefault();
@@ -70,6 +77,7 @@ export default function CartItems() {
                                                     <X size={20} />
                                                 </button>
                                             </div>
+                                            {item && 
                                             <div key={index} className="flex flex-row gap-5 items-start lg:justify-center md:justify-start justify-start">
                                                 <Link href={`/product/${item._id}`}>
                                                     <div className="w-[150px] h-[150px] flex-1">
@@ -84,9 +92,17 @@ export default function CartItems() {
                                                         <span className="font-bluefamily-def-H2 font-semibold">₹{item.price}
                                                         </span>
                                                     </p>
-                                                    <p className="font-bluefamily-def-H3">Qty: {item.quantity}</p>
+                                                    <div className="flex flex-row gap-4">
+                                                    <span>Qty</span>
+                                                    <Input type="number" name="qty" 
+                                                                    className="border-b input-focus-border-h-def w-15 rounded-[3px] px-2"                
+                                                                    value={item.qty}
+                                                                    onInput={(e) => updateCart(item, parseInt(e.currentTarget.value),index)}
+                                                                    // onChange={(e) => setQty(parseInt(e.currentTarget.value))}
+                                                                  /> 
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div>}
                                             {cartStoreItems.length > index + 1 ? <hr className="mt-5"></hr> : ''}
                                             
                                         </div>

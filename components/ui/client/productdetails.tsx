@@ -2,7 +2,7 @@
 
 import { DivideSquare, IndianRupee } from "lucide-react";
 import { Card } from "../card";
-import { Button } from "@base-ui/react";
+import { Button, Input } from "@base-ui/react";
 import React from "react";
 import { useCartStore } from "@/app/store/CommonStore";
 import { ReadStream } from "fs";
@@ -18,16 +18,17 @@ interface Props {
 export function ProductDetails({ product, children }: Props) {
   const [sizeButton, setSizeButton] = React.useState<string | null>(null);
   const [showAddCart, setShowAddCart] = React.useState(false);
+  const [qty, setQty] = React.useState<number>(1);
 
   const addToCartStore = useCartStore((state) => state.addToCart);
   const addToCart = (product: any) => {
-    product = { ...product, size: sizeButton };
+    product = { ...product, size: sizeButton, qty : qty };
     console.log("updated product - ", product);
-    addToCartStore({ ...product, size: sizeButton });
+    addToCartStore({ ...product, size: sizeButton,qty : qty });
     setShowAddCart(true)
     setTimeout(() => {
       setShowAddCart(false);
-  }, 2000);
+    }, 2000);
   }
 
   const sizeButtons = [
@@ -49,7 +50,7 @@ export function ProductDetails({ product, children }: Props) {
           <div className=" flex lg:flex-row md:flex-col flex-col py-3">
             <div className="px-4 border-slate-200/60 flex flex-col gap-4 w-full md:w-full lg:w-full">
               <ProductDetailsImage product={product}></ProductDetailsImage>
-              <div className="flex flex-row gap-10 mt-2 py-5">
+              <div className="flex flex-row gap-10 mt-2 py-3">
                 <div className="font-redfamily-def text-[15px] flex">
                   size
                 </div>
@@ -67,6 +68,17 @@ export function ProductDetails({ product, children }: Props) {
                   ))
                   }
                 </div>
+
+              </div>
+              <div className="flex flex-row gap-5 pb-5">
+              <div className="font-redfamily-def text-[15px] flex">
+                quantiy
+              </div>
+              <Input type="number" name="quantity" 
+                className="border-b input-focus-border-h-def border w-15 rounded-[3px] px-2"                
+                value={qty}
+                onInput={(e) => setQty(parseInt(e.currentTarget.value))}
+              /> 
               </div>
             </div>
 

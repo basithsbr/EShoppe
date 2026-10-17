@@ -41,9 +41,14 @@ export function Header() {
       .catch((err) => console.error("SDK Initialization failed:", err));
   }, [appId]);
 
+  // const handleLoginClick = async (action: string) => {
   const handleLoginClick = async (action: string) => {
 
     try {
+      if(action === "cart") {
+          router.push('/cart');
+          return;
+        }
       // Execute the module workflow promise
       const accessToken = await loginWithMetaSDK(appId || "", "public_profile,email");
 
@@ -61,9 +66,7 @@ export function Header() {
         setAvatar(data.avatar);
         setName(data.name);
         console.log("Server successfully logged you in. User info:", data);
-        if(action === "cart") {
-          router.push('/cart');
-        }
+        
       } else {
         alert("Server failed to log you in with the token.");
       }
@@ -135,6 +138,7 @@ export function Header() {
               {!name ?
                 <Button variant="outline" size="sm" className="cursor-pointer gap-2 relative"
                   onClick={() => handleLoginClick("login")}>                
+                  
                   <User className="h-5 w-5 text-muted-foreground" />
                   <span className="sm:inline flex flex-row items-center gap-1">
                     <span className="absolute -top-1.5 -right-1.5 bg-blue-500 text-primary-foreground font-bold rectangle 
