@@ -51,7 +51,7 @@ export default function ProductDetailsImage({ product }: { product: any }) {
                          text-gray-800  flex items-center justify-center w-10 h-10"
                     aria-label="Scroll left"
                 >
-                    <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def">‹</span>
+                    <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def cursor-pointer">‹</span>
                 </button>
                 <div
                     ref={scrollContainerRef}
@@ -63,7 +63,7 @@ export default function ProductDetailsImage({ product }: { product: any }) {
                         src={imageUrl}
                         alt={product.name}
                         className={`text-center 
-                          w-20 object-contain border-[#071b4b] ${imageIndex === index ? 'border-2' : ''} transform group-hover:scale-105 transition-transform duration-300`}
+                          w-20 object-contain border-[#071b4b] ${imageIndex === index ? 'border-2' : ''}  cursor-pointer transform group-hover:scale-105 transition-transform duration-300`}
                         onClick={() => handleImageClick(imageUrl,index)}
                     />
                 ))}
@@ -75,7 +75,7 @@ export default function ProductDetailsImage({ product }: { product: any }) {
                          text-gray-800  flex items-center justify-center w-10 h-10"
                         aria-label="Scroll right"
                     >
-                        <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def">›</span>
+                        <span className="text-xl flex justify-center font-bold font-mono font-bluefamily-def  cursor-pointer">›</span>
                     </button>
             </div>
         </>

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 interface AddressPayload {
-
+  userId: string
+  userName: string
+  userEmail: string
   address1: string
   address2: string
   district: string

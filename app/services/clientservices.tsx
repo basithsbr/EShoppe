@@ -102,25 +102,40 @@ export async function getRelatedProductBy(id: string) {
 }
 
 
-export const insertAddress = async (addressData: any) => {
-  const response = await fetch(`${BASE_PATH}/api/address/`, { 
+export const insertContactDetails = async (addressData: any) => {
+    console.log("insertContactDetails - addressData : ",addressData);
+    const response = await fetch(`${BASE_PATH}/api/address/insert/`, { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(addressData),
+    body: addressData,
   });
   return response.json();
 };
 
-// export const getAddressesByUserId = async (userId: string | number) => {
-//   // Appends ?userId=YOUR_ID to the request URL
-//   const response = await fetch(`${BASE_PATH}/api/address?userId=${userId}`, { 
-//     method: 'GET',
-//     headers: { 'Content-Type': 'application/json' },
-//   });
+export const updateContactDetails = async(addressData: any) => {
+    console.log("updateContactDetails - addressData : ",addressData);
+    const parsedAddressData = typeof addressData === 'string' ? JSON.parse(addressData) : addressData;
+    addressData = JSON.stringify({...parsedAddressData,'action':'update_contact_details'});
+    const response = await fetch(`${BASE_PATH}/api/generic/`, { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: addressData,
+  });
+  return response.json;
+};
 
-//   if (!response.ok) {
-//     throw new Error(`Failed to fetch addresses for user ${userId}`);
-//   }
-  
-//   return response.json();
-// };
+
+export const getContactDetails = async (userId: any) => {
+    if(userId)
+        {
+        console.log("getContactDetails - userId : ",userId);
+        const req = JSON.stringify({'userId': userId, action: 'contact_details' });
+        const response = await fetch(`${BASE_PATH}/api/generic/`, { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: req,
+    });
+    
+        return response.json();
+    }
+};

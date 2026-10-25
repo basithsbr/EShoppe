@@ -1,4 +1,4 @@
-import { useCartStore } from "@/app/store/CommonStore";
+import { useCartStore } from "@/app/store/cartStore";
 import { totalCartAmount } from "@/app/utils/utils";
 
 

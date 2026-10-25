@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import SearchBar from "./SearchBar";
 import { ArrowBigUp, ArrowUp, ArrowUpAZ, ArrowUpFromLineIcon, ChevronDown, ChevronsUpIcon, ChevronUpSquare, LucideTriangle, TriangleIcon, XIcon } from 'lucide-react'
-import { useProductStore } from '@/app/store/CommonStore'
+import { useProductStore } from '@/app/store/cartStore'
 
 export default function SearchDrawer({open, setSearchOpen} : {open:boolean, setSearchOpen: (open: boolean) => void}) {
 //   const isSearchOpen = useProductStore((state) => state.isSearchOpen)

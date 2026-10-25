@@ -1,14 +1,15 @@
 'use client'
 
-import { useCartStore } from "@/app/store/CommonStore";
+import { useCartStore } from "@/app/store/cartStore";
 import { Button, Input, Separator, Slider } from "@base-ui/react";
-import { Icon, SeparatorVertical, SlidersHorizontal, X } from "lucide-react";
+import { Icon, SeparatorVertical, SlidersHorizontal, Users, X } from "lucide-react";
 import React, { useEffect } from "react";
 import CartAmount from "./cartamount";
 import ContactDetails from "./contactdetails";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { insertAddress } from "@/app/services/clientservices";
+import { getContactDetails, insertContactDetails, updateContactDetails } from "@/app/services/clientservices";
+import { useUserStore } from "@/app/store/userStore";
 
 interface Props {
     cartItems: any[]
@@ -21,9 +22,12 @@ export default function CartItems() {
     const updateItemInCard = useCartStore((state) => state.updateCart);
     const [cartItems, setCartItems] = React.useState(cartStoreItems);
     const [hasHydrated, setHydrated] = React.useState<boolean>(false);
-    const [qty, setQty] = React.useState<number>();
+
     const cartAmount = useCartStore((state) => state.getCartAmount());
-    console.log("cartItems ", cartItems.length)
+
+    const userStore = useUserStore((state) => state.user);
+    const [contactDetails, setContactDetails] = React.useState();
+
     const removeItem = (itemIndex: number) => {
         console.log("remove item - ", itemIndex);
         removeItemInCard(itemIndex);
@@ -33,20 +37,30 @@ export default function CartItems() {
             prevItems.filter((_, idx) => idx !== itemIndex)
 
         )
-    } 
-     const updateCart = (item: any, qty: number, index: number) => {
-        console.log("updateCart : ",qty)
-        const product = {...item, qty: qty};
-        console.log("product : ",product);
-        updateItemInCard(index,product);
     }
+    const updateCart = (item: any, qty: number, index: number) => {
+        console.log("updateCart : ", qty)
+        const product = { ...item, qty: qty };
+        console.log("product : ", product);
+        updateItemInCard(index, product);
+    }
+
+    React.useEffect(() => {
+        if (!userStore?.userEmail) return;
+        const contactDetails = getContactDetails(userStore?.userEmail);
+        contactDetails.then((contactDetails) => {
+            console.log("contactDetails - ", contactDetails);
+            setContactDetails(contactDetails);
+        });
+    }, [userStore])
     const handleContactDetailsSubmit = (e: React.SubmitEvent) => {
 
         e.preventDefault();
         const formData = new FormData(e.currentTarget as HTMLFormElement);
-        const jsonObject = Object.fromEntries(formData.entries());
-        console.log('Form JSON Data:', JSON.stringify(jsonObject, null, 2));
-        insertAddress(JSON.stringify(jsonObject, null, 2));
+        const address = Object.fromEntries(formData.entries());
+        console.log('Form JSON Data:', JSON.stringify(address, null, 2));
+        const addressReq = JSON.stringify({ ...address, 'userEmail': userStore?.userEmail, 'userId': userStore?.userEmail, 'userName': userStore?.userName }, null, 2);
+        !contactDetails ? insertContactDetails(addressReq) : updateContactDetails(addressReq);
         router.push('/payment');
     }
 
@@ -77,34 +91,34 @@ export default function CartItems() {
                                                     <X size={20} />
                                                 </button>
                                             </div>
-                                            {item && 
-                                            <div key={index} className="flex flex-row gap-5 items-start lg:justify-center md:justify-start justify-start">
-                                                <Link href={`/product/${item._id}`}>
-                                                    <div className="w-[150px] h-[150px] flex-1">
-                                                        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain object-top"  />
+                                            {item &&
+                                                <div key={index} className="flex flex-row gap-5 items-start lg:justify-center md:justify-start justify-start">
+                                                    <Link href={`/product/${item._id}?cartIndex=${index}`}>
+                                                        <div className="w-[150px] h-[150px] flex-1">
+                                                            <img src={item.image_url} alt={item.name} className="w-full h-full object-contain object-top" />
+                                                        </div>
+                                                    </Link>
+                                                    <div className="flex flex-col gap-2 w-1/3  items-start justify-start">
+                                                        <h3 className="font-bluefamily-def-H2 font-semibold wrap-break-word">{item.category}</h3>
+                                                        {/* <h3 className="font-bluefamily-def-H2 font-semibold">{item.name}</h3> */}
+                                                        <p className="font-bluefamily-def-H3">Size: {item.size}</p>
+                                                        <p className="font-bluefamily-def-H3">Price:
+                                                            <span className="font-bluefamily-def-H2 font-semibold">₹{item.price}
+                                                            </span>
+                                                        </p>
+                                                        <div className="flex flex-row gap-4">
+                                                            <span>Qty</span>
+                                                            <Input type="number" name="qty"
+                                                                className="border-b input-focus-border-h-def w-15 rounded-[3px] px-2"
+                                                                value={item.qty}
+                                                                onInput={(e) => updateCart(item, parseInt(e.currentTarget.value), index)}
+                                                            // onChange={(e) => setQty(parseInt(e.currentTarget.value))}
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </Link>
-                                                <div className="flex flex-col gap-2 w-1/3  items-start justify-start">
-                                                    <h3 className="font-bluefamily-def-H2 font-semibold wrap-break-word">{item.category}</h3>
-                                                    {/* <h3 className="font-bluefamily-def-H2 font-semibold">{item.name}</h3> */}
-                                                    <p className="font-bluefamily-def-H3">Size: {item.size}</p>
-                                                    <p className="font-bluefamily-def-H3">Price:
-                                                        <span className="font-bluefamily-def-H2 font-semibold">₹{item.price}
-                                                        </span>
-                                                    </p>
-                                                    <div className="flex flex-row gap-4">
-                                                    <span>Qty</span>
-                                                    <Input type="number" name="qty" 
-                                                                    className="border-b input-focus-border-h-def w-15 rounded-[3px] px-2"                
-                                                                    value={item.qty}
-                                                                    onInput={(e) => updateCart(item, parseInt(e.currentTarget.value),index)}
-                                                                    // onChange={(e) => setQty(parseInt(e.currentTarget.value))}
-                                                                  /> 
-                                                    </div>
-                                                </div>
-                                            </div>}
+                                                </div>}
                                             {cartStoreItems.length > index + 1 ? <hr className="mt-5"></hr> : ''}
-                                            
+
                                         </div>
                                     ))}
                                 </div>
@@ -127,7 +141,7 @@ export default function CartItems() {
             </div>
             <div className="horizontal-line-def"></div>
             <form onSubmit={handleContactDetailsSubmit} className="space-y-4">
-                <ContactDetails></ContactDetails>
+                <ContactDetails contactDetails={contactDetails}></ContactDetails>
 
                 <div className="w-full text-right">
                     {

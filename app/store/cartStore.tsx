@@ -18,9 +18,33 @@ export const useCartStore = create<CartState>()(
     (set, get) => (
       {
         cart: [],
-        addToCart: (item) => set((state) => ({
-          cart: [...(Array.isArray(state.cart) ? state.cart : []), item]
-        })),
+        addToCart: (item) => set((state) =>
+        // ({cart: [...(Array.isArray(state.cart) ? state.cart : []), item]})
+
+        {
+          const itemIndex = Array.isArray(state.cart) ? state.cart.findIndex(cartItem => cartItem._id === item._id && cartItem.size == item.size) : 0;
+          console.log("itemIndex : ", itemIndex);
+          if (itemIndex == -1) {
+            return { cart: [...(Array.isArray(state.cart) ? state.cart : []), item] }
+          } else {
+            const carts = state.cart.map((cartItem, index) => {
+              return index === itemIndex ? { ...cartItem, qty: item.qty + cartItem.qty } : cartItem;
+            });
+
+            return { cart: carts }
+          }
+        }
+          //   {
+          //   console.log("is cart Array : ",Array.isArray(state.cart));
+          //   const cartItems = Array.isArray(state.cart) && state.cart.length > 0 ? state.cart.map((cartItem, index) => {
+          //       console.log("cartItem._id : ",cartItem._id);
+          //       console.log("item._id : ",item._id);
+          //       return cartItem._id === item._id ? {...cartItem, qty: cartItem.qty + item.qty} : cartItem;
+          //   }) : [item];
+          //   console.log("cartItems : ",cartItems);
+          //   return {cart: cartItems}
+          // }
+        ),
         clearCart: () =>
           set({ cart: [] }),
         removeItemInCard: (itemIndex: number) => set((state) => {
@@ -36,16 +60,16 @@ export const useCartStore = create<CartState>()(
 
         getCartAmount: () => {
           const cart = get().cart;
-          
-          const retAmt =  Array.isArray(cart) && cart.length > 0 ? cart.reduce((total, item) => {
+
+          const retAmt = Array.isArray(cart) && cart.length > 0 ? cart.reduce((total, item) => {
             if (!item || item.price === undefined || item.price === null) {
               return total;
             }
-            
+
             const itemQty = item.qty ?? 1;
             return total + (Number(item.price) * itemQty);
-          },0) : 0;
-          console.log("retAmt : ",retAmt);
+          }, 0) : 0;
+          console.log("retAmt : ", retAmt);
           return retAmt;
         },
 
@@ -53,9 +77,10 @@ export const useCartStore = create<CartState>()(
           const cartItem = state.cart.map((item, index) => {
             return index === itemIndex ? { ...item, qty: itemUpdate.qty } : item;
           });
-          console.log("cartItem : ", cartItem)
+
           return { cart: cartItem }
-        })
+        }),
+
       }
     ),
     {

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { CreditCard, QrCode, ShieldCheck, Lock } from 'lucide-react';
 import CartAmount from '@/components/ui/client/cartamount';
-import { useCartStore } from '../store/CommonStore';
+import { useCartStore } from '../store/cartStore';
 import UpiPayment from '@/components/ui/client/UPIPayment';
 import { useRouter } from 'next/navigation';
 export default function PaymentPage() {

@@ -3,21 +3,26 @@ import { getProductById, getRelatedProductBy } from '@/app/services/clientservic
 import React, { Suspense } from "react";
 import { ShowCardsScrollH } from "@/components/ui/server/cardsscrollH";
 import ServerCard from "@/components/ui/server/productscards";
+import { useCartStore, useProductStore } from "@/app/store/cartStore";
 
 interface Props {
+  params: Promise<{ id: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage({ params,searchParams }: Props) {
 
+  
   const resolvedParams = await params;
   const productId = resolvedParams.id;
-  const product = await getProductById(productId);
+  const resolvedSearchParams = await searchParams;
+  
+  const product =  await getProductById(productId);
   const relatedProducts = await getRelatedProductBy(productId);
-  const searchParams = Promise.resolve({ category: product.category, id: productId, related: relatedProducts});
+  // const searchParams = Promise.resolve({ category: product.category, id: productId, related: relatedProducts});
   return (
     <>
-      {product && product.length > 0 ? <ProductDetails product={product[0]}>
+      {product && product.length > 0 ? <ProductDetails product={product[0]} cartIndex={parseInt(resolvedSearchParams.cartIndex+'')}>
         
           <ShowCardsScrollH searchParams={searchParams} type="new">
             <ServerCard searchParams={searchParams} cardClass="w-40 lg:w-60 md:-50" wrapperDivClass="w-full flex gap-3"/>

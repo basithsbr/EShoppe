@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { useProductStore } from '@/app/store/CommonStore'
+import { useProductStore } from '@/app/store/cartStore'
 
 export default function LoginDrawer({ open, setLoginOpen }: { open: boolean, setLoginOpen: (open: boolean) => void }) {
   const [isOpen, setIsOpen] = useState(false)

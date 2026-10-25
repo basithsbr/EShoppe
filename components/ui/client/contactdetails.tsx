@@ -2,7 +2,7 @@ import { Input } from "@base-ui/react";
 import { Search } from "lucide-react";
 
 
-export default function ContactDetails() {
+export default function ContactDetails({contactDetails}:{contactDetails?: any}) {
     
     return (
         <div className="flex flex-col gap-5">
@@ -16,6 +16,7 @@ export default function ContactDetails() {
                         </span>
                         <Input type="text" required name="address1"                            
                             className="border-b input-focus-border-h-def" 
+                            defaultValue={contactDetails?.address1 || ''}
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter your address!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} 
                             />
@@ -25,6 +26,7 @@ export default function ContactDetails() {
                             Address2
                         </span>
                         <Input type="text" name="address2"
+                            defaultValue={contactDetails?.address2 || ''}
                             className="border-b input-focus-border-h-def"
                              />
                     </div>
@@ -33,6 +35,7 @@ export default function ContactDetails() {
                             LandMark
                         </span>
                         <Input type="text" required name="landMark"
+                            defaultValue={contactDetails?.landMark || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Landmark would be helpful!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -40,9 +43,10 @@ export default function ContactDetails() {
                     
                     <div className="flex flex-col gap-3">
                         <span className="font-bluefamily-def-H3">
-                            Zip Code
+                            Pin Code
                         </span>
                         <Input type="number" required name="zip"
+                            defaultValue={contactDetails?.zip || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter your Zip code!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -55,6 +59,7 @@ export default function ContactDetails() {
                             District
                         </span>
                         <Input type="text" required name="district"
+                            defaultValue={contactDetails?.district || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter your District!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -64,6 +69,7 @@ export default function ContactDetails() {
                             City
                         </span>
                         <Input type="text" required name="city"
+                            defaultValue={contactDetails?.city || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter your city!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -73,6 +79,7 @@ export default function ContactDetails() {
                             State
                         </span>
                         <Input type="text" required name="state"
+                            defaultValue={contactDetails?.state || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter your State!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -84,6 +91,7 @@ export default function ContactDetails() {
                             Mobile1
                         </span>
                         <Input type="number" required name="mobile1"
+                            defaultValue={contactDetails?.mobile1 || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Mobile number is needed!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />
@@ -93,6 +101,7 @@ export default function ContactDetails() {
                             Mobile2
                         </span>
                         <Input type="number" name="mobile2"
+                            defaultValue={contactDetails?.mobile2 || ''}
                             className="border-b input-focus-border-h-def"  />
                     </div>
                     <div className="flex flex-col gap-3">
@@ -100,6 +109,7 @@ export default function ContactDetails() {
                             LandLine
                         </span>
                         <Input type="number" name="landline"
+                            defaultValue={contactDetails?.landline || ''}
                             className="border-b input-focus-border-h-def" 
                             />
                     </div>
@@ -108,6 +118,7 @@ export default function ContactDetails() {
                             Email
                         </span>
                         <Input type="text" required name="email"
+                            defaultValue={contactDetails?.email || ''}
                             className="border-b input-focus-border-h-def" 
                             onInvalid={(e) => e.currentTarget.setCustomValidity('Email is needed!')}
                             onInput={(e) => e.currentTarget.setCustomValidity('')} />

@@ -22,7 +22,6 @@ export default async function ServerCard({ searchParams, style, cardClass,wrappe
     : await fetchLiveData(searchParams);
   return (
     <>
-
       <React.Suspense>
         {productsArray.length === 0 ? <>
           <div className="w-full flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-16 text-center">

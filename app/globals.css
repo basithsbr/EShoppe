@@ -227,6 +227,13 @@
   text-[12px]
   tracking-wider 
 }
+
+@utility font-bluefamily-def-H13 {
+  @apply font-[Arial,sans-serif]
+  text-[#071b4b]
+  text-[13px]
+}
+
 @utility font-bluefamily-def-H11 {
   @apply font-[Arial,sans-serif]
   text-[#071b4b]  

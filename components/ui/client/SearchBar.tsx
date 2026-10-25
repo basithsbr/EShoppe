@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { useProductStore } from '@/app/store/CommonStore'
+import { useProductStore } from '@/app/store/cartStore'
 import { Button } from '../button'
 import Link from 'next/link'
 

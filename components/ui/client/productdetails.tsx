@@ -4,7 +4,7 @@ import { DivideSquare, IndianRupee } from "lucide-react";
 import { Card } from "../card";
 import { Button, Input } from "@base-ui/react";
 import React from "react";
-import { useCartStore } from "@/app/store/CommonStore";
+import { useCartStore } from "@/app/store/cartStore";
 import { ReadStream } from "fs";
 import { ShowCardsScrollH } from "../server/cardsscrollH";
 import ProductDetailsImage from "./ProductDetailsImage";
@@ -12,23 +12,45 @@ import ProductDetailsImage from "./ProductDetailsImage";
 
 interface Props {
   product: any,
+  cartIndex: number,
   children?: React.ReactNode
 }
 
-export function ProductDetails({ product, children }: Props) {
-  const [sizeButton, setSizeButton] = React.useState<string | null>(null);
-  const [showAddCart, setShowAddCart] = React.useState(false);
+export function ProductDetails({ product, cartIndex, children }: Props) {
+  const cartStoreItems = useCartStore((state) => state.cart);
+
+  const cartItem = cartIndex != undefined ? cartStoreItems[cartIndex] : null;
+  const [sizeButton, setSizeButton] = React.useState<string | null>(cartItem ? cartItem.size : '');
+  const [addCartSuccess, setAddCartSuccess] = React.useState(false);
+  const [addCartSuccessMsg, setAddCartSuccessMsg] = React.useState('');
+  const [addCartFailed, setAddCartFailed] = React.useState(false);
+  const [addCartFailedMsg, setAddCartFailedMsg] = React.useState('');
+
   const [qty, setQty] = React.useState<number>(1);
+
+
 
   const addToCartStore = useCartStore((state) => state.addToCart);
   const addToCart = (product: any) => {
-    product = { ...product, size: sizeButton, qty : qty };
-    console.log("updated product - ", product);
-    addToCartStore({ ...product, size: sizeButton,qty : qty });
-    setShowAddCart(true)
+    product = { ...product, size: sizeButton, qty: qty };
+    // setAddCartFailed(false);
+    let addCartFailedVar;
+    if(!sizeButton)
+    {
+       addCartFailedVar = true;
+       setAddCartFailed(true);
+       setAddCartFailedMsg("Failed to Add cart. Please choose the size!");
+    }
+
+    if (!addCartFailedVar) {
+      addToCartStore({ ...product, size: sizeButton, qty: qty });
+      setAddCartSuccess(true);
+      setAddCartSuccessMsg("Added to Cart !!!")      
+    }
     setTimeout(() => {
-      setShowAddCart(false);
-    }, 2000);
+        setAddCartSuccess(false);
+        setAddCartFailed(false);
+      }, 3000);
   }
 
   const sizeButtons = [
@@ -59,7 +81,7 @@ export function ProductDetails({ product, children }: Props) {
                 <div className="flex flex-row gap-3 items-center justify-start w-full flex-wrap ">
                   {sizeButtons.map((button) => (
                     <button
-                      key={button.id}
+                      key={button.id} value="M"
                       className={`prod-size ${sizeButton === button.id ? 'red-def' : ''}`}
                       onClick={() => setSizeButton(button.id)}
                     >
@@ -71,14 +93,14 @@ export function ProductDetails({ product, children }: Props) {
 
               </div>
               <div className="flex flex-row gap-5 pb-5">
-              <div className="font-redfamily-def text-[15px] flex">
-                quantiy
-              </div>
-              <Input type="number" name="quantity" 
-                className="border-b input-focus-border-h-def border w-15 rounded-[3px] px-2"                
-                value={qty}
-                onInput={(e) => setQty(parseInt(e.currentTarget.value))}
-              /> 
+                <div className="font-redfamily-def text-[15px] flex">
+                  quantiy
+                </div>
+                <Input type="number" name="quantity"
+                  className="border-b input-focus-border-h-def border w-15 rounded-[3px] px-2"
+                  value={cartItem ? cartItem.qty : qty}
+                  onInput={(e) => setQty(parseInt(e.currentTarget.value))}
+                />
               </div>
             </div>
 
@@ -119,12 +141,18 @@ export function ProductDetails({ product, children }: Props) {
                   <div>
                     <Button
                       onClick={() => addToCart(product)}
-                      className="button-def">
+                      className="button-def ">
                       Add To Cart</Button>
-                    <div className={`text-green-600 text-[12px] font-bluefamily-def mt-1 p-4
-                      shadow-border-def-p1 rounded-xl border-2 absolute ${showAddCart ? 'block' : 'hidden'}  bg-green-100`}>
-                      <span className="text-[12px] font-extrabold text-green-800">
-                        Added to cart !!
+                    <div className={`mt-1 p-3 border-[#071b4b]
+                      shadow-border-def-p1 rounded-xl border-2 absolute ${addCartSuccess ? 'block' : 'hidden'}  bg-white`}>
+                      <span className="font-semibold font-bluefamily-def-H13 tracking-[1px]">
+                        {addCartSuccessMsg}
+                      </span>
+                    </div>
+                    <div className={`mt-1 p-3 border-[#e91e63]
+                      shadow-border-def-p1 rounded-xl border-2 absolute ${addCartFailed ? 'block' : 'hidden'} bg-white`}>
+                      <span className="font-semibold font-redfamily-def-H13 tracking-[1px]">
+                        {addCartFailedMsg}
                       </span>
                     </div>
                   </div>

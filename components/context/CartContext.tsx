@@ -1,6 +1,6 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
-
+  
 interface CartContextType {
   cart: any[];
   addToCart: (product: any) => void;

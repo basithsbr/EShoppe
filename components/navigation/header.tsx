@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { useCartStore, useProductStore } from "../../app/store/CommonStore";
+import { useCartStore, useProductStore } from "../../app/store/cartStore";
 import SearchBar from "../ui/client/SearchBar";
 import SearchDrawer from "../ui/client/SearchDrawer";
 import { openMetaModal } from "@/app/utils/metaAuth";
@@ -16,6 +16,7 @@ import UserOverlayLogin from "./UserOverlayLogin";
 import UserIconLoginOverlay from "./UserOverlayLogin";
 import LoginBar from "../ui/client/loginDrawer";
 import LoginDrawer from "../ui/client/loginDrawer";
+import { useUserStore } from "@/app/store/userStore";
 
 
 
@@ -23,17 +24,25 @@ export function Header() {
   const pathname = usePathname()
   const router = useRouter();
   const count = useCartStore((state) => state.getCartCount());
+  const setUserStore = useUserStore((state) => state.setUser)
+  const userStore = useUserStore((state) => state.user)
   const [searchOpen, setSearchOpen] = React.useState(false);
-  const [loginOpen, setLoginOpen] = React.useState(false);
-  const [avatar, setAvatar] = React.useState();
-  const [name, setName] = React.useState<string>();
+  const [avatar, setAvatar] = React.useState<string | null>(userStore?.userAvatar || null);
+  const [name, setName] = React.useState<string | null>(userStore?.userName || null);
   const appId = process.env.NEXT_PUBLIC_META_APP_ID;
-  // const redirectUri = encodeURIComponent(process.env.NEXT_PUBLIC_META_REDIRECT_URI || '');
-  const redirectUri = process.env.NEXT_PUBLIC_META_REDIRECT_URI;
+  const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 
   const [hasHydrated, setHasHydrated] = React.useState(false);
 
-  // 2. Wait until client-side hydration completes
+  React.useEffect(() => {
+    if (userStore) {
+      setAvatar(userStore.userAvatar || null);
+      setName(userStore.userName || null);
+    }
+  }, [userStore]);
+
+  
   React.useEffect(() => {
     setHasHydrated(true);
     initMetaSDK(appId || "").then(() => console.log("Meta SDK successfully initialized."))
@@ -45,17 +54,17 @@ export function Header() {
   const handleLoginClick = async (action: string) => {
 
     try {
-      if(action === "cart") {
-          router.push('/cart');
-          return;
-        }
+      if (action === "cart") {
+        router.push('/cart');
+        return;
+      }
       // Execute the module workflow promise
       const accessToken = await loginWithMetaSDK(appId || "", "public_profile,email");
 
       console.log("Success! Access token retrieved:", accessToken);
 
       // 3. Post the token directly to your Next.js server route handler
-      const res = await fetch("/EShoppe/api/auth/meta/callback", {
+      const res = await fetch(`${BASE_PATH}/api/auth/meta/callback`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
@@ -65,8 +74,10 @@ export function Header() {
         const data = await res.json();
         setAvatar(data.avatar);
         setName(data.name);
+
+        setUserStore({ 'userName': data.name, 'userEmail': data.email, 'userAvatar': data.avatar });
         console.log("Server successfully logged you in. User info:", data);
-        
+
       } else {
         alert("Server failed to log you in with the token.");
       }
@@ -137,8 +148,8 @@ export function Header() {
 
               {!name ?
                 <Button variant="outline" size="sm" className="cursor-pointer gap-2 relative"
-                  onClick={() => handleLoginClick("login")}>                
-                  
+                  onClick={() => handleLoginClick("login")}>
+
                   <User className="h-5 w-5 text-muted-foreground" />
                   <span className="sm:inline flex flex-row items-center gap-1">
                     <span className="absolute -top-1.5 -right-1.5 bg-blue-500 text-primary-foreground font-bold rectangle 
@@ -198,7 +209,7 @@ export function Header() {
                 </Button>
                 :
                 <Button variant="outline" size="sm" className="cursor-pointer gap-2 relative ml-1"
-                onClick={() => router.push('/cart')}>
+                  onClick={() => router.push('/cart')}>
                   <ShoppingBag className="h-4 w-4" />
                   <span className="hidden sm:inline">Cart</span>
                   <span className="absolute -top-1.5 -right-1.5 blue-def text-primary-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
